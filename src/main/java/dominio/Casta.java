@@ -14,6 +14,7 @@ public abstract class Casta implements Serializable {
 
 	protected String[] habilidadesCasta;
 
+	
 	/**
 	 *  Establece el valor por defecto de las diferentes habilidades de la casta.
 	 */
@@ -38,7 +39,8 @@ public abstract class Casta implements Serializable {
 	}
 
 	/**
-	 * Cada personaje tiene disponible 3 habilidades, siendo estas diferentes y haciendo distinto tipos de da�o.
+	 * Cada personaje tiene disponible 3 habilidades, siendo estas diferentes y con efectos distintos
+	 * dependiendo de que casta se trate
 	 */
 	public abstract boolean habilidad1(Personaje caster, Peleable atacado);
 
@@ -50,10 +52,18 @@ public abstract class Casta implements Serializable {
 		return this.nombreCasta;
 	}
 
+	/**
+	 * devuelve las habilidades de la casta
+	 * @return
+	 */
 	public String[] getHabilidadesCasta() {
 		return habilidadesCasta;
 	}
 
+	/**
+	 * devuelve el valor de "probabilidadGolpeCritico"
+	 * @return
+	 */
 	public double getProbabilidadGolpeCritico() {
 		return probabilidadGolpeCritico;
 	}
@@ -67,18 +77,34 @@ public abstract class Casta implements Serializable {
 		this.probabilidadGolpeCritico = probabilidadGolpeCritico;
 	}
 
+	/**
+	 * devuelve el valor de "probabilidadEvitarDaño"
+	 * @return
+	 */
 	public double getProbabilidadEvitarDaño() {
 		return probabilidadEvitarDaño;
 	}
 
+	/**
+	 * establece un valor para "probabilidadEvitarDaño"
+	 * @return
+	 */
 	public void setProbabilidadEvitarDaño(double probabilidadEvitarDaño) {
 		this.probabilidadEvitarDaño = probabilidadEvitarDaño;
 	}
 
+	/**
+	 * devuelve el valor de "dañoCritico"
+	 * @return
+	 */
 	public double getDañoCritico() {
 		return dañoCritico;
 	}
 
+	/**
+	 * establece un valor para "dañoCritico"
+	 * @return
+	 */
 	public void setDañoCritico(double dañoCritico) {
 		this.dañoCritico = dañoCritico;
 	}

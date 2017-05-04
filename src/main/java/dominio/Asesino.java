@@ -7,11 +7,20 @@ package dominio;
  */
 public class Asesino extends Casta {
 
+	/**
+	 * crea la casta "Asesino" con valores enviados por parametro
+	 * @param prob_crit
+	 * @param evasion
+	 * @param daño_crit
+	 */
 	public Asesino(double prob_crit, double evasion, double daño_crit) {
 		super(prob_crit, evasion, daño_crit);
 		this.nombreCasta="Asesino";
 	}
 
+	/**
+	 * crea la casta "Asesino" con valores predeterminados
+	 */
 	public Asesino() {
 		super();
 		this.nombreCasta="Asesino";
@@ -54,6 +63,10 @@ public class Asesino extends Casta {
 		return false;
 	}
 
+	/**
+	 * permite el uso de la habilidad "robar" propia de la casta "Asesino"
+	 * y establece sus efectos y condicion de uso
+	 */
 	// Robar
 	public boolean habilidad3(Personaje caster, Peleable atacado) {
 		return false;
