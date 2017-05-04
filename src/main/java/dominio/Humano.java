@@ -1,5 +1,4 @@
 package dominio;
-
 /**
  * 
  * Una de las posibles razas de personajes que el jugador puede elegir
@@ -7,6 +6,12 @@ package dominio;
  */
 public class Humano extends Personaje {
 
+	/**
+	 * crea un personaje de raza "Humano" con nombre y casta enviados por parametro
+	 * @param nombre
+	 * @param casta
+	 * @param id
+	 */
 	public Humano(String nombre, Casta casta, int id) {
 		super(nombre, casta, id);
 		saludTope += 5;
@@ -16,6 +21,20 @@ public class Humano extends Personaje {
 		nombreRaza = "Humano";
 	}
 
+	/**
+	 * crea un personaje de raza humano con todas sus caracteristicas enviadas
+	 * por parametro (nombre, saluda, energia, fuerza, etc)
+	 * @param nombre
+	 * @param salud
+	 * @param energia
+	 * @param fuerza
+	 * @param destreza
+	 * @param inteligencia
+	 * @param casta
+	 * @param experiencia
+	 * @param nivel
+	 * @param idPersonaje
+	 */
 	public Humano(String nombre, int salud, int energia, int fuerza, int destreza, int inteligencia, Casta casta,
 			int experiencia, int nivel, int idPersonaje) {
 		super(nombre, salud, energia, fuerza, destreza, inteligencia, casta, experiencia, nivel, idPersonaje);
@@ -25,9 +44,12 @@ public class Humano extends Personaje {
 		habilidadesRaza[0] = "Incentivar";
 		habilidadesRaza[1] = "Golpe Fatal";
 	}
+
 	/**
-	 * Habilidad "Incentivar" particular para la raza, 
+	 * permite el uso de la habilidad "Incentivar" propia de la raza "humano"
+	 * y establece sus efectos y condicion de uso
 	 */
+	// Incentivar
 	public boolean habilidadRaza1(Peleable atacado) {
 		if (this.getEnergia() > 10) {
 			this.setEnergia(this.getEnergia() - 10);
@@ -36,9 +58,12 @@ public class Humano extends Personaje {
 		}
 		return false;
 	}
+
 	/**
-	 * Habilidad "Golpe Fatal" particular para la raza,   
+	 * permite el uso de la habilidad "Golpe Fatal" propia de la raza "humano"
+	 * y establece sus efectos y condicion de uso
 	 */
+	// Golpe Fatal
 	public boolean habilidadRaza2(Peleable atacado) {
 		if (this.getEnergia() > 10) {
 			if (atacado.serAtacado(atacado.getSalud() / 2) > 0) {

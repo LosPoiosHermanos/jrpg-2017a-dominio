@@ -6,6 +6,12 @@ package dominio;
  */
 public class Elfo extends Personaje {
 
+	/**
+	 * crea un personaje de raza "elfo" con nombre y casta enviados por parametro
+	 * @param nombre
+	 * @param casta
+	 * @param id
+	 */
 	public Elfo(String nombre, Casta casta, int id) {
 		super(nombre, casta, id);
 		energiaTope += 10;
@@ -18,6 +24,20 @@ public class Elfo extends Personaje {
 		habilidadesRaza[1] = "Ataque Bosque";
 	}
 
+	/**
+	 * crea un personaje de raza elfo con todas sus caracteristicas enviadas
+	 * por parametro (nombre, saluda, energia, fuerza, etc)
+	 * @param nombre
+	 * @param salud
+	 * @param energia
+	 * @param fuerza
+	 * @param destreza
+	 * @param inteligencia
+	 * @param casta
+	 * @param experiencia
+	 * @param nivel
+	 * @param idPersonaje
+	 */
 	public Elfo(String nombre, int salud, int energia, int fuerza, int destreza, int inteligencia, Casta casta,
 			int experiencia, int nivel,
 			int idPersonaje) {
@@ -30,10 +50,11 @@ public class Elfo extends Personaje {
 		habilidadesRaza[1] = "Ataque Bosque";
 	}
 
-
 	/**
-	 * Habilidad "Golpe level" particular de la raza
+	 * permite el uso de la habilidad "Golpe Level" propia de la raza "elfo"
+	 * y establece sus efectos y condicion de uso
 	 */
+	// Golpe Level
 	public boolean habilidadRaza1(Peleable atacado) {
 		if (this.getEnergia() > 10) {
 			this.setEnergia(this.getEnergia() - 10);
@@ -44,8 +65,10 @@ public class Elfo extends Personaje {
 	}
 
 	/**
-	 * Habilidad "Ataque Bosque" particular de la raza
+	 * permite el uso de la habilidad "Ataque Bosque" propia de la raza "elfo"
+	 * y establece sus efectos y condicion de uso
 	 */
+	// Ataque Bosque
 	public boolean habilidadRaza2(Peleable atacado) {
 		if (this.getEnergia() > 10) {
 			this.setEnergia(this.getEnergia() - 10);
