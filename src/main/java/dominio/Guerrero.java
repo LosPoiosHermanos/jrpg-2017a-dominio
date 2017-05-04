@@ -1,5 +1,4 @@
 package dominio;
-
 /**
  * 
  * Tipo de personaje que puede tener un jugador, con habilidades propias de 
@@ -13,6 +12,9 @@ public class Guerrero extends Casta {
 		this.nombreCasta = "Guerrero";
 	}
 
+	/**
+	 * crea la casta "Guerrero" con valores predeterminados
+	 */
 	public Guerrero() {
 		super();
 		this.nombreCasta = "Guerrero";
@@ -22,11 +24,12 @@ public class Guerrero extends Casta {
 		habilidadesCasta[1] = "Aumentar Defensa";
 		habilidadesCasta[2] = "Ignorar Defensa";
 	}
-	
+
 	/**
 	 * permite el uso de la habilidad "Ataque Doble" propia de la casta "Guerrero"
 	 * y establece sus efectos y condicion de uso
 	 */
+	// Ataque Doble
 	public boolean habilidad1(Personaje caster, Peleable atacado) { 
 		if (caster.getEnergia() > 10) {
 			caster.setEnergia(caster.getEnergia() - 10);
@@ -35,11 +38,12 @@ public class Guerrero extends Casta {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * permite el uso de la habilidad "Aumentar Defensa" propia de la casta "Guerrero"
 	 * y establece sus efectos y condicion de uso
 	 */
+	// Aumentar Defensa
 	public boolean habilidad2(Personaje caster, Peleable atacado) { 
 		if (caster.getEnergia() > 10) {
 			caster.setEnergia(caster.getEnergia() - 10);
@@ -49,6 +53,10 @@ public class Guerrero extends Casta {
 		return false;
 	}
 
+	/**
+	 * permite el uso de la habilidad "Ignorar Defensa" propia de la casta "Guerrero"
+	 * y establece sus efectos y condicion de uso
+	 */
 	// Ignorar Defensa
 	public boolean habilidad3(Personaje caster, Peleable atacado) { 
 		if (caster.getEnergia() > 10) {

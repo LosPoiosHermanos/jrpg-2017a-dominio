@@ -15,8 +15,7 @@ public class NonPlayableCharacter implements Peleable {
 	private static final int dificultadAleatoria = -1;
 
 	/**
-	 * establece un personaje no jugable con determinados atributos basados en la dificultad 
-	 * elegida
+	 * establece un personaje no jugable con determinados atributos basados en la dificultad elegida
 	 * @param nombre
 	 * @param nivel
 	 * @param dificultadNPC
@@ -49,57 +48,106 @@ public class NonPlayableCharacter implements Peleable {
 
 		}
 	}
+
 	/**
-	 * sube experiencia de el personaje no manejable por el jugador (NPCs)
+	 * aumenta el valor del atributo "nivel"
 	 */
 	public int otorgarExp() {
 		return this.nivel * 30;
 	}
 
+	/**
+	 * devuelve el valor del atributo "fuerza"
+	 * @return
+	 */
 	public int getFuerza() {
 		return fuerza;
 	}
 
+	/**
+	 * establece un valor para el atributo "fuerza"
+	 * @return
+	 */
 	public void setFuerza(int fuerza) {
 		this.fuerza = fuerza;
 	}
 
+	/**
+	 * devuelve el valor del atributo "nombre"
+	 * @return
+	 */
 	public String getNombre() {
 		return nombre;
 	}
 
+	/**
+	 * establece un valor para el atributo "nombre"
+	 * @return
+	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
+	/**
+	 * devuelve el valor del atributo "nivel"
+	 * @return
+	 */
 	public int getNivel() {
 		return nivel;
 	}
 
+	/**
+	 * establece un valor para el atributo "nivel"
+	 * @return
+	 */
 	public void setNivel(int nivel) {
 		this.nivel = nivel;
 	}
 
+	/**
+	 * devuelve "true" o "false" dependiendo si el personaje no jugable
+	 * esta vivo o no (salud mayor a cero)
+	 */
 	public boolean estaVivo() {
 		return salud > 0;
 	}
 
+	/**
+	 * devuelve el valor del atributo "defensa"
+	 * @return
+	 */
 	public int getDefensa() {
 		return defensa;
 	}
 
+	/**
+	 * establece un valor para el atributo "defensa"
+	 * @return
+	 */
 	public void setDefensa(int defensa) {
 		this.defensa = defensa;
 	}
 
+	/**
+	 * devuelve el valor del atributo "salud"
+	 * @return
+	 */
 	public int getSalud() {
 		return salud;
 	}
-
+	
+	/**
+	 * establece un valor para el atributo "salud"
+	 * @return
+	 */
 	public void setSalud(int salud) {
 		this.salud = salud;
 	}
 
+	/**
+	 * permite un ataque del personaje no jugable contra otro personaje
+	 * 
+	 */
 	public int atacar(Peleable atacado) {
 		if (MyRandom.nextDouble() <= 0.15) {// los NPC tienen 15% de golpes criticos
 			return atacado.serAtacado((int) (this.getAtaque() * 1.5));
@@ -129,11 +177,17 @@ public class NonPlayableCharacter implements Peleable {
 
 	}
 
+	/**
+	 * devuelve el valor del atributo "fuerza"
+	 */
 	@Override
 	public int getAtaque() {
 		return fuerza;
 	}
 
+	/**
+	 * establece un valor para el atributo "ataque"
+	 */
 	@Override
 	public void setAtaque(int ataque) {
 		this.fuerza = ataque;

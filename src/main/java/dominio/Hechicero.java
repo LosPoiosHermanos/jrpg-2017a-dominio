@@ -1,11 +1,11 @@
 package dominio;
-
 /**
  * 
  * Tipo de personaje que puede tener un jugador, con habilidades propias de 
  * dicha casta para un hechicero.
  *
  */
+
 public class Hechicero extends Casta {
 
 	public Hechicero(double prob_crit, double evasion, double daño_crit) {
@@ -13,6 +13,9 @@ public class Hechicero extends Casta {
 		this.nombreCasta = "Hechicero";
 	}
 
+	/**
+	 * crea la casta "Hechicero" con valores predeterminados
+	 */
 	public Hechicero() {
 		super();
 		this.nombreCasta = "Hechicero";
@@ -26,6 +29,7 @@ public class Hechicero extends Casta {
 	 * permite el uso de la habilidad "Bola de Fuego" propia de la casta "Hechicero"
 	 * y establece sus efectos y condicion de uso
 	 */ 
+	// Bola de Fuego
 	public boolean habilidad1(Personaje caster, Peleable atacado) {
 		if (caster.getEnergia() > 10) {
 			caster.setEnergia(caster.getEnergia() - 10);
@@ -36,9 +40,10 @@ public class Hechicero extends Casta {
 	}
 
 	/**
-	 * permite el uso de la habilidad "curar aliaso" propia de la casta "Hechicero"
+	 * permite el uso de la habilidad "Curar Aliado" propia de la casta "Hechicero"
 	 * y establece sus efectos y condicion de uso
-	 */
+	 */ 
+	// Curar Aliado
 	public boolean habilidad2(Personaje caster, Peleable aliado) {
 		if (caster.getEnergia() > 10) {
 			caster.setEnergia(caster.getEnergia() - 10);
@@ -50,6 +55,10 @@ public class Hechicero extends Casta {
 		return false;
 	}
 
+	/**
+	 * permite el uso de la habilidad "Robar Energia y Salud" propia de la casta "Hechicero"
+	 * y establece sus efectos y condicion de uso
+	 */ 
 	// Robar Energia y Salud
 	public boolean habilidad3(Personaje caster, Peleable atacado) {
 		if (caster.getEnergia() > 10) {
