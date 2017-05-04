@@ -1,11 +1,6 @@
-/*
- * 
- */
 package dominio;
-
 import java.util.LinkedList;
 
-// TODO: Auto-generated Javadoc
 /**
  * Añade o elimina jugadores a un equipo determinado
  * 
