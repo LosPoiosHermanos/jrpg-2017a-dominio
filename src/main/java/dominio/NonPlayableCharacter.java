@@ -4,7 +4,7 @@ package dominio;
  * establece los personajes no manejables por el jugador (NPCs) y sus estadisticas y atributos
  *
  */
-public class NonPlayableCharacter implements Peleable {
+public class NonPlayableCharacter implements Peleable{
 
   private int salud;
   private int fuerza;
