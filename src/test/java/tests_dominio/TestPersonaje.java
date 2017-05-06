@@ -34,6 +34,7 @@ public class TestPersonaje {
 	@Test
 	public void testElfo() {
 		Elfo e = new Elfo("Nicolas", new Guerrero(), 1);
+		
 		Assert.assertTrue(e.getSalud() == 100);
 		Assert.assertTrue(e.getEnergia() == 110);
 		Assert.assertTrue(e.getFuerza() == 15);
@@ -53,6 +54,15 @@ public class TestPersonaje {
 		Assert.assertTrue(e3.getFuerza() == 10);
 		Assert.assertTrue(e3.getDestreza() == 15);
 		Assert.assertTrue(e3.getInteligencia() == 10);
+		
+		e.serRobadoSalud(5000);
+		Assert.assertTrue(e.getSalud() == 0);
+		e.serDesernegizado(5000);
+		Assert.assertTrue(e.getEnergia() == 0);
+		e.serEnergizado(5000);
+		Assert.assertTrue(e.getEnergia()==e.getEnergiaTope());
+		
+		Assert.assertTrue(e.getHabilidadesCasta()!=null);
 	}
 
 	@Test
@@ -77,5 +87,66 @@ public class TestPersonaje {
 		Assert.assertTrue(o3.getFuerza() == 10);
 		Assert.assertTrue(o3.getDestreza() == 15);
 		Assert.assertTrue(o3.getInteligencia() == 10);
+	}
+	@Test
+	public void testResstEnergia(){
+		Orco orq = new Orco("Hernan", new Asesino(), 3);
+		orq.setEnergia(orq.getEnergiaTope()-10);
+		orq.restablecerEnergia();
+		Assert.assertTrue( orq.getEnergia() == orq.getEnergiaTope());
+	}
+	@Test
+	public void testResstSalud(){
+		Orco orq = new Orco("Hernan", new Asesino(), 3);
+		orq.setSalud(orq.getSaludTope()-10);
+		orq.restablecerSalud();
+		Assert.assertTrue( orq.getSalud() == orq.getSaludTope());
+
+		orq.setSaludTope(50);
+		Assert.assertTrue( orq.getSaludTope() == 50);
+		
+	}
+	@Test
+	public void tesDistancia(){
+		Orco orq = new Orco("Hernan", new Asesino(), 3);
+		Elfo elf = new Elfo("Nicolas", new Guerrero(), 1);
+		orq.setDistancia(2, 2);
+		elf.setDistancia(51, 2);
+		Assert.assertTrue( orq.distanciaCon(elf) == 49 );
+	}
+	@Test
+	public void testCrearAlianza(){
+		Humano h = new Humano("Nicolas",new Guerrero(),1);
+		h.crearAlianza("MyClan");
+		Assert.assertTrue(h.getClan().obtenerNombre().equals("MyClan"));	
+	}
+	@Test
+	public void testPuedeAtacar(){
+		Humano h = new Humano("Nicolas",new Guerrero(),1);
+		Assert.assertTrue(h.puedeAtacar()==true);
+	}
+	@Test
+	public void testSets(){
+		Humano h = new Humano("Nicolas",new Guerrero(),1);
+		Casta c = new Guerrero();
+		h.setEnergiaTope(5);
+		Assert.assertTrue(5 == h.getEnergiaTope());
+		h.setNivel(5);
+		Assert.assertTrue(5 == h.getNivel());
+		h.setIdPersonaje(5);
+		Assert.assertTrue(5 == h.getIdPersonaje());
+		h.setMagia(5);
+		Assert.assertTrue(5 == h.getMagia());
+		h.setExperiencia(5);
+		Assert.assertTrue(5 == h.getExperiencia());
+		h.setNombre("julian");
+		Assert.assertEquals("julian", h.getNombre());
+		h.setNombreRaza("orco");
+		Assert.assertEquals("orco", h.getNombreRaza());
+		h.setCasta(c);
+		Assert.assertTrue(h.getCasta().getNombreCasta()==c.getNombreCasta());
+		Assert.assertTrue(h.getX()==0);
+		Assert.assertTrue(h.getY()==0);
+		
 	}
 }

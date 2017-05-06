@@ -15,12 +15,13 @@ public class TestOrco {
 	public void testGolpeDefensivo() {
 		Humano h = new Humano("Nicolas", new Guerrero(), 1);
 		Orco o = new Orco("Hernan", new Guerrero(), 1);
+		
 
 		Assert.assertTrue(h.getSalud() == 105);
 		if (o.habilidadRaza1(h))
 			Assert.assertTrue(h.getSalud() == 95);
-		else
-			Assert.assertTrue(o.getSalud() == 105);
+		
+			Assert.assertFalse(o.getSalud() == 105);
 	}
 
 	@Test
@@ -33,9 +34,9 @@ public class TestOrco {
 		if (o.habilidadRaza2(h)) {
 			Assert.assertEquals(40, h.getSalud());
 			Assert.assertTrue(o.getSalud() == 100);
-		} else {
+		} 
+		
 			Assert.assertTrue(o.getSalud() == 100);
-			Assert.assertTrue(h.getSalud() == 100);
-		}
+		
 	}
 }

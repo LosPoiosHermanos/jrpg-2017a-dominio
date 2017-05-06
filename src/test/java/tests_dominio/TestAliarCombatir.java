@@ -1,4 +1,6 @@
 package tests_dominio;
+import java.util.LinkedList;
+
 import org.junit.Assert;
 import org.junit.Test;
 import dominio.*;
@@ -25,8 +27,8 @@ public class TestAliarCombatir {
 		Assert.assertTrue(h2.getSalud()==105);
 		if(	h.atacar(h2)!=0)
 			Assert.assertTrue(h2.getSalud()<105);
-		else
-			Assert.assertTrue(h2.getSalud()==105);
+		
+			Assert.assertFalse(h2.getSalud()==105);
 	}
 	
 	@Test
@@ -41,6 +43,21 @@ public class TestAliarCombatir {
 		Assert.assertNotNull(h.getClan());
 		h.aliar(h2);
 		Assert.assertTrue(h.getClan()==h2.getClan());
+		
+		
+		
+		h.salirDeAlianza();
+		Assert.assertTrue(h.getClan() == null);
+		
+		LinkedList<Personaje> listap = a1.getAliados();
+		Assert.assertTrue(listap.size() == 1);
+		
+		listap.removeLast();
+		a1.setAliados(listap);
+		Assert.assertTrue(listap.size() == 0);
+		
+		
 	}
+
 	
 }
