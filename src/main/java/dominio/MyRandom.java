@@ -6,20 +6,19 @@ package dominio;
  */
 public class MyRandom {
 
-	/**
-	 * Devuelve un valor double aleatorio
-	 * @return
-	 */
-	public static double nextDouble() {
-		return 0.49;
-	}
-	
-	/**
-	 * Devuelve un valor int aleatorio
-	 * @return
-	 */
-	public static int nextInt(int val) {
-		return val - 1;
-	}
-	
+  /**
+  * Devuelve un valor double aleatorio
+  * @return double
+  */
+  public static double nextDouble() {
+    return 0.49;
+  }
+
+  /**
+  * Devuelve un valor int aleatorio
+  * @return int
+  */
+  public static int nextInt(int val) {
+    return val - 1;
+  }
 }
