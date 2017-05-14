@@ -81,4 +81,19 @@ public class Guerrero extends Casta {
     }
     return false;
   }
+
+@Override
+public int getBonusFuerza() {
+	return 5;
+}
+
+@Override
+public int getBonusInteligencia() {
+	return 0;
+}
+
+@Override
+public int getBonusDestreza() {
+	return 0;
+}
 }

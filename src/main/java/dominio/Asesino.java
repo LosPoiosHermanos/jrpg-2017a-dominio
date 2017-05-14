@@ -70,4 +70,19 @@ public class Asesino extends Casta {
   public boolean habilidad3(Personaje caster, Peleable atacado) {
     return false;
   }
+
+@Override
+public int getBonusFuerza() {
+	return 0;
+}
+
+@Override
+public int getBonusInteligencia() {
+	return 0;
+}
+
+@Override
+public int getBonusDestreza() {
+	return 5;
+}
 }

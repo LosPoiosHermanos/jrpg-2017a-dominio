@@ -86,15 +86,10 @@ public abstract class Personaje implements Peleable, Serializable {
     fuerza = 10;
     inteligencia = 10;
     destreza = 10;
-    if (casta.nombreCasta.equals("Guerrero")) {
-      fuerza += 5;
-    }
-    if (casta.nombreCasta.equals("Hechicero")) {
-      inteligencia += 5;
-    }
-    if (casta.nombreCasta.equals("Asesino")) {
-      destreza += 5;
-    }
+    
+    this.fuerza += casta.getBonusFuerza();
+    this.inteligencia += casta.getBonusInteligencia();
+    this.destreza += casta.getBonusDestreza();
     x = 0;
     y = 0;
     saludTope = 100;
