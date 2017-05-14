@@ -24,4 +24,6 @@ public interface Peleable {
   public boolean estaVivo();
   
   public String getNombre();
+  
+  public void serCurado(int PuntosDeMagia);
 }

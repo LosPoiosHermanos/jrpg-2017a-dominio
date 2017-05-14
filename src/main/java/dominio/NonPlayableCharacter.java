@@ -201,4 +201,7 @@ public class NonPlayableCharacter implements Peleable{
   public void setAtaque(int ataque) {
     this.fuerza = ataque;
   }
+
+  @Override
+  public void serCurado(int PuntosDeMagia) {}
 }
