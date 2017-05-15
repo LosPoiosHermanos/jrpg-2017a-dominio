@@ -41,7 +41,7 @@ public class Guerrero extends Casta {
   public boolean habilidad1(Personaje caster, Peleable atacado) { 
     if (caster.getEnergia() > 10) {
       caster.setEnergia(caster.getEnergia() - 10);
-      if (atacado.serAtacado(caster.ataque * 2) > 0) {
+      if (atacado.serAtacado(caster.ataque * 2, new MyRandom()) > 0) {
         return true;
       }
     }
@@ -73,7 +73,7 @@ public class Guerrero extends Casta {
       if (atacado instanceof Personaje) {
         int defensa_original = ((Personaje) atacado).getDefensa();
         ((Personaje) atacado).setDefensa(0);
-        if (atacado.serAtacado(caster.ataque) > 0) {
+        if (atacado.serAtacado(caster.ataque, new MyRandom()) > 0) {
           ((Personaje) atacado).setDefensa(defensa_original);
           return true;
         }

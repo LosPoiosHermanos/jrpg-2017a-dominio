@@ -53,7 +53,7 @@ public class Humano extends Personaje {
   * y establece sus efectos y condicion de uso
   */
   
-  public boolean habilidadRaza1(Peleable atacado) {
+  public boolean habilidadRaza1(Peleable atacado, RandomGenerator random) {
     if (this.getEnergia() > 10) {
       this.setEnergia(this.getEnergia() - 10);
       atacado.setAtaque(atacado.getAtaque() + this.getMagia());
@@ -67,9 +67,9 @@ public class Humano extends Personaje {
   * y establece sus efectos y condicion de uso
   */
   
-  public boolean habilidadRaza2(Peleable atacado) {
+  public boolean habilidadRaza2(Peleable atacado, RandomGenerator random) {
     if (this.getEnergia() > 10) {
-      if (atacado.serAtacado(atacado.getSalud() / 2) > 0) {
+      if (atacado.serAtacado(atacado.getSalud() / 2 , random) > 0 ) {
         this.setEnergia(this.getEnergia() / 2);
         return true;
       }
