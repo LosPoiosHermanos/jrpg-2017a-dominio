@@ -1,24 +1,28 @@
 package dominio;
 
+import java.util.Random;
+
 /**
  * devuelve valores aleatorios de tipo "int" o "double"
  * 
  */
-public class MyRandom {
+public class MyRandom extends RandomGenerator{
 
   /**
   * Devuelve un valor double aleatorio
   * @return double
   */
-  public static double nextDouble() {
-    return 0.49;
+	@Override
+  public double nextDouble() {
+    return new Random().nextDouble();
   }
 
   /**
-  * Devuelve un valor int aleatorio
+  * Devuelve un valor int aleatorio menor al parametro max
   * @return int
   */
-  public static int nextInt(int val) {
-    return val - 1;
+  	@Override
+  public  int nextInt(int max){
+    return new Random().nextInt(max);
   }
 }

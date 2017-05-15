@@ -4,6 +4,7 @@ import dominio.Asesino;
 import dominio.Guerrero;
 import dominio.Hechicero;
 import dominio.Humano;
+import dominio.MyRandomStub;
 import dominio.Orco;
 import org.junit.Assert;
 import org.junit.Test;
@@ -15,7 +16,7 @@ public class TestOrco {
     Humano h = new Humano("Nicolas", new Guerrero(), 1);
     Orco o = new Orco("Hernan", new Guerrero(), 1);
     Assert.assertTrue(h.getSalud() == 105);
-    if (o.habilidadRaza1(h)) {
+    if (o.habilidadRaza1(h,new MyRandomStub(0))) {
       Assert.assertTrue(h.getSalud() == 95);
     } else {
       Assert.assertTrue(o.getSalud() == 105);
@@ -28,7 +29,7 @@ public class TestOrco {
     Orco o = new Orco("Nico", 100, 100, 80, 20, 30, new Asesino(0.2, 0.3, 1.5), 0, 1, 1);
     Assert.assertTrue(h.getSalud() == 100);
     o.setSalud(100);
-    if (o.habilidadRaza2(h)) {
+    if (o.habilidadRaza2(h,new MyRandomStub(0))) {
       Assert.assertEquals(40, h.getSalud());
       Assert.assertTrue(o.getSalud() == 100);
     } else {
