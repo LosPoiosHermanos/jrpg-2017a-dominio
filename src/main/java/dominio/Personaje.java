@@ -431,20 +431,19 @@ public abstract class Personaje implements Peleable, Serializable {
   /**
   * permite un ataque de un personaje a otro, estableciendo
   * condiciones para el mismo y efectos
-  * random define la probabilidad de golpe critico
   * @return int
   */
   
-  public int atacar(Peleable atacado, RandomGenerator random) {
+  public int atacar(Peleable atacado) {
     if (salud == 0) {
       return 0;
     }
     if (atacado.getSalud() > 0) {
-      if (random.nextDouble() <= this.casta.getProbabilidadGolpeCritico() 
+      if (MyRandom.nextDouble() <= this.casta.getProbabilidadGolpeCritico() 
           + this.destreza / 1000) {
-        return atacado.serAtacado(this.golpe_critico(), random);
+        return atacado.serAtacado(this.golpe_critico());
       } else {
-        return atacado.serAtacado(this.ataque, random);
+        return atacado.serAtacado(this.ataque);
       }
     }
     return 0;
@@ -539,8 +538,8 @@ public abstract class Personaje implements Peleable, Serializable {
   * permite que el personaje sea atacado por otro 
   * y establece los efectos y condiciones de dicha accion
   */
-  public int serAtacado(int daño, RandomGenerator random) {
-    if (random.nextDouble() >= this.getCasta().getProbabilidadEvitarDaño()) {
+  public int serAtacado(int daño) {
+    if (MyRandom.nextDouble() >= this.getCasta().getProbabilidadEvitarDaño()) {
       daño -= this.defensa;
       if (daño > 0) {
         if (salud <= daño) {
@@ -780,9 +779,9 @@ public abstract class Personaje implements Peleable, Serializable {
   * @return boolean
   */
   
-  public abstract boolean habilidadRaza1(Peleable atacado, RandomGenerator random);
+  public abstract boolean habilidadRaza1(Peleable atacado);
 
-  public abstract boolean habilidadRaza2(Peleable atacado, RandomGenerator random);
+  public abstract boolean habilidadRaza2(Peleable atacado);
   
   public void setDistancia(int x, int y) {
     this.x = x;

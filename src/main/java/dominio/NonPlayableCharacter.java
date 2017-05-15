@@ -20,12 +20,12 @@ public class NonPlayableCharacter implements Peleable{
   * {@param dificultadNPC}
   */
   
-  public NonPlayableCharacter(String nombre, int nivel, int dificultadNPC, RandomGenerator random) {
+  public NonPlayableCharacter(String nombre, int nivel, int dificultadNPC) {
     this.nombre = nombre;
     this.nivel = nivel;
     int dificultad;
     if (dificultadNPC == dificultadAleatoria) {
-      dificultad = random.nextInt(3);
+      dificultad = MyRandom.nextInt(3);
     } else {
       dificultad = dificultadNPC;
     }
@@ -154,11 +154,11 @@ public class NonPlayableCharacter implements Peleable{
   * 
   */
   
-  public int atacar(Peleable atacado, RandomGenerator random) {
-    if (random.nextDouble() <= 0.15) {
-      return atacado.serAtacado((int) (this.getAtaque() * 1.5), random);
+  public int atacar(Peleable atacado) {
+    if (MyRandom.nextDouble() <= 0.15) {
+      return atacado.serAtacado((int) (this.getAtaque() * 1.5));
     } else {
-      return atacado.serAtacado(this.getAtaque(), random);
+      return atacado.serAtacado(this.getAtaque());
     }
   }
 
@@ -168,8 +168,8 @@ public class NonPlayableCharacter implements Peleable{
   * o devuelve cero si esquivo el golpe o su defensa es mayor que el daño del atacante
   */
   
-  public int serAtacado(int daño, RandomGenerator random) {
-    if (random.nextDouble() >= 0.15) {
+  public int serAtacado(int daño) {
+    if (MyRandom.nextDouble() >= 0.15) {
       daño -= this.getDefensa() / 2;
       if (daño > 0) {
         salud -= daño;

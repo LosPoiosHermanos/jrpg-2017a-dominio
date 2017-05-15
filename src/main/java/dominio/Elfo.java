@@ -55,13 +55,12 @@ public class Elfo extends Personaje {
   /**
   * permite el uso de la habilidad "Golpe Level" propia de la raza "elfo"
   * y establece sus efectos y condicion de uso
-  * random varia la probabilidad de evitar danio
   */
   
-  public boolean habilidadRaza1(Peleable atacado, RandomGenerator random) {
+  public boolean habilidadRaza1(Peleable atacado) {
     if (this.getEnergia() > 10) {
       this.setEnergia(this.getEnergia() - 10);
-      if (atacado.serAtacado(this.getFuerza() + this.getNivel() * 10, random) > 0) {
+      if (atacado.serAtacado(this.getFuerza() + this.getNivel() * 10) > 0) {
         return true;
       }
     }
@@ -73,10 +72,10 @@ public class Elfo extends Personaje {
   * y establece sus efectos y condicion de uso
   */
   
-  public boolean habilidadRaza2(Peleable atacado, RandomGenerator random) {
+  public boolean habilidadRaza2(Peleable atacado) {
     if (this.getEnergia() > 10) {
       this.setEnergia(this.getEnergia() - 10);
-      if (atacado.serAtacado((int) (this.magia), random) > 0) {
+      if (atacado.serAtacado((int) (this.magia)) > 0) {
         return true;  
       }
     }

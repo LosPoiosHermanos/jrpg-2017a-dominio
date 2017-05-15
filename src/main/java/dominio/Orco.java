@@ -52,10 +52,10 @@ public class Orco extends Personaje {
   * y establece sus efectos y condicion de uso
   */
 
-  public boolean habilidadRaza1(Peleable atacado, RandomGenerator random) {
+  public boolean habilidadRaza1(Peleable atacado) {
     if (this.getEnergia() > 10) {
       this.setEnergia(this.getEnergia() - 10);
-      if (atacado.serAtacado(this.getDefensa() * 2, random) > 0) {
+      if (atacado.serAtacado(this.getDefensa() * 2) > 0) {
         return true;
       }
       return true;
@@ -68,10 +68,10 @@ public class Orco extends Personaje {
   * y establece sus efectos y condicion de uso
   */
   
-  public boolean habilidadRaza2(Peleable atacado, RandomGenerator random) {
+  public boolean habilidadRaza2(Peleable atacado) {
     if (this.getEnergia() > 10) {
       this.setEnergia(this.getEnergia() - 10);
-      int daño_causado = atacado.serAtacado(this.getFuerza(), random);
+      int daño_causado = atacado.serAtacado(this.getFuerza());
       if (daño_causado > 0) {
         this.serCurado(daño_causado);
         return true;
