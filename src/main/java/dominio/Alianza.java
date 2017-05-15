@@ -27,18 +27,11 @@ public class Alianza {
   * @return Personaje
   */
   
-  public LinkedList<Personaje> getAliados() {
-    return aliados;
+  public LinkedList<Personaje> obtenerAliados() {
+     LinkedList<Personaje> copia = this.aliados;
+     return copia;
   }
 
-  /**
-  * Agrega una lista de miembros a la alianza
-  * {@param aliados}
-  */
-  
-  public void setAliados(LinkedList<Personaje> aliados) {
-    this.aliados = aliados;
-  }
 
   /**
   * devuelve el nombre de la alianza
