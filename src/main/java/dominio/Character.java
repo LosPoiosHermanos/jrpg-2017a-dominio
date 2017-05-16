@@ -11,5 +11,4 @@ public abstract class Character {
   private int nivel;
 
 //  public int otorgarExp();
-  
 }

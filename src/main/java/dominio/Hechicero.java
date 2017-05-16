@@ -1,90 +1,109 @@
 package dominio;
+
 /**
- * Tipo de personaje que puede tener un jugador, con habilidades propias de 
+ * Tipo de personaje que puede tener un jugador, con habilidades propias de
  * dicha casta para un hechicero.
  *
  */
 
 public class Hechicero extends Casta {
+	private static final int ENERGIAMINIMA = 10;
+	private static final int CANTIDADHABILIDADES = 3;
+	private static final int BONUSINTELIGENCIA = 5;
+	private static final double DANIOPORPUNTOSDEMAGIA = 1.5;
+	/**
+	 * crea la casta "Hechicero" con valores enviados por parametro
+	 * @param probCritico Porcentaje del golpe critico
+	 * @param evasion Porcentaje de Evasion
+	 * @param ataqueCritico Daño por el golpe critico
+	 */
+	public Hechicero(final double probCritico, final double evasion, final double ataqueCritico) {
+		super(probCritico, evasion, ataqueCritico);
+		this.nombreCasta = "Hechicero";
+	}
 
-  public Hechicero(double prob_crit, double evasion, double daño_crit) {
-    super(prob_crit, evasion, daño_crit);
-    this.nombreCasta = "Hechicero";
-  }
+	/**
+	 * crea la casta "Hechicero" con valores predeterminados
+	 */
 
-  /**
-  * crea la casta "Hechicero" con valores predeterminados
-  */
-  
-  public Hechicero() {
-    super();
-    this.nombreCasta = "Hechicero";
-    habilidadesCasta = new String[3];
-    habilidadesCasta[0] = "Bola de Fuego";
-    habilidadesCasta[1] = "Curar Aliado";
-    habilidadesCasta[2] = "Robar Energia y Salud";
-  }
+	public Hechicero() {
+		super();
+		this.nombreCasta = "Hechicero";
+		habilidadesCasta = new String[CANTIDADHABILIDADES];
+		habilidadesCasta[0] = "Bola de Fuego";
+		habilidadesCasta[1] = "Curar Aliado";
+		habilidadesCasta[2] = "Robar Energia y Salud";
+	}
 
-  /**
-  * permite el uso de la habilidad "Bola de Fuego" propia de la casta "Hechicero"
-  * y establece sus efectos y condicion de uso
-  */
+	/**
+	 * permite el uso de la habilidad "Bola de Fuego" propia de la casta
+	 * "Hechicero" y establece sus efectos y condicion de uso
+	 * @param caster Personaje que realiza la habilidad
+	 * @param atacado Peleable a quien se le hace la accion de la habilidad
+	 * @return true Si se pudo realizar la habilidad
+	 */
+	public boolean habilidad1(final Personaje caster, final Peleable atacado) {
+		if (caster.getEnergia() > ENERGIAMINIMA) {
+			caster.setEnergia(caster.getEnergia() - ENERGIAMINIMA);
+			if (atacado.serAtacado((int) (caster.calcularPuntosDeMagia() * DANIOPORPUNTOSDEMAGIA),
+			new MyRandom()) > 0) {
+				return true;
+			}
+		}
+		return false;
+	}
 
-  public boolean habilidad1(Personaje caster, Peleable atacado) {
-    if (caster.getEnergia() > 10) {
-      caster.setEnergia(caster.getEnergia() - 10);
-      if (atacado.serAtacado((int) (caster.calcularPuntosDeMagia() * 1.5), new MyRandom()) > 0){
-        return true; 
-      }  
-    }
-    return false;
-  }
+	/**
+	 * permite el uso de la habilidad "Curar Aliado" propia de la casta
+	 * "Hechicero" y establece sus efectos y condicion de uso
+	 * @param caster Personaje que realiza la habilidad
+	 * @param aliado Peleable a quien se le hace la accion de la habilidad
+	 * @return true Si se pudo realizar la habilidad
+	 */
+	public boolean habilidad2(final Personaje caster, final Peleable aliado) {
+		if (caster.getEnergia() > ENERGIAMINIMA) {
+			caster.setEnergia(caster.getEnergia() - ENERGIAMINIMA);
+			aliado.serCurado(caster.calcularPuntosDeMagia());
+			return true;
+		}
+		return false;
+	}
 
-  /**
-  * permite el uso de la habilidad "Curar Aliado" propia de la casta "Hechicero"
-  * y establece sus efectos y condicion de uso
-  */
+	/**
+	 * permite el uso de la habilidad "Robar Energia y Salud" propia de la casta
+	 * "Hechicero" y establece sus efectos y condicion de uso
+	 * @param caster Personaje que realiza la habilidad
+	 * @param atacado Peleable a quien se le hace la accion de la habilidad
+	 * @return true Si se pudo realizar la habilidad
+	 */
+	public boolean habilidad3(final Personaje caster, final Peleable atacado) {
+		if (caster.getEnergia() > ENERGIAMINIMA) {
+			caster.setEnergia(caster.getEnergia() - ENERGIAMINIMA);
+			if (atacado instanceof Personaje) {
+				int energiaRobada =	((Personaje)
+						atacado).serDesernegizado(caster.calcularPuntosDeMagia());
+				int saludRobada = ((Personaje)
+						atacado).serRobadoSalud(caster.calcularPuntosDeMagia() / 2);
+				caster.serEnergizado(energiaRobada);
+				caster.serCurado(saludRobada);
+				return true;
+			}
+		}
+		return false;
+	}
 
-  public boolean habilidad2(Personaje caster, Peleable aliado) {
-    if (caster.getEnergia() > 10) {
-      caster.setEnergia(caster.getEnergia() - 10);
-      aliado.serCurado(caster.calcularPuntosDeMagia());
-      return true;
-    }
-    return false;
-  }
+	@Override
+	public int getBonusFuerza() {
+		return 0;
+	}
 
-  /**
-  * permite el uso de la habilidad "Robar Energia y Salud" propia de la casta "Hechicero"
-  * y establece sus efectos y condicion de uso
-  */
+	@Override
+	public int getBonusInteligencia() {
+		return BONUSINTELIGENCIA;
+	}
 
-  public boolean habilidad3(Personaje caster, Peleable atacado) {
-    if (caster.getEnergia() > 10) {
-      caster.setEnergia(caster.getEnergia() - 10);
-      if (atacado instanceof Personaje) {
-        int energia_robada = ((Personaje) atacado).serDesernegizado(caster.calcularPuntosDeMagia());
-        int salud_robada = ((Personaje) atacado).serRobadoSalud(caster.calcularPuntosDeMagia() / 2);
-        caster.serEnergizado(energia_robada);
-        caster.serCurado(salud_robada);
-        return true;
-      }
-    }
-    return false;
-  }
-
-@Override
-public int getBonusFuerza() {
-	return 0;
-}
-
-@Override
-public int getBonusInteligencia() {
-	return 5;
-}
-
-@Override
-public int getBonusDestreza() {
-	return 0;
-}
+	@Override
+	public int getBonusDestreza() {
+		return 0;
+	}
 }

@@ -1,207 +1,239 @@
 package dominio;
 
 /**
- * establece los personajes no manejables por el jugador (NPCs) y sus estadisticas y atributos
+ * establece los personajes no manejables por el jugador (NPCs) y sus
+ * estadisticas y atributos
  *
  */
-public class NonPlayableCharacter implements Peleable{
+public class NonPlayableCharacter implements Peleable {
 
-  private int salud;
-  private int fuerza;
-  private int defensa;
-  private String nombre;
-  private int nivel;
-  private static final int dificultadAleatoria = -1;
-  
-  /**
-  * establece un personaje no jugable con determinados atributos basados en la dificultad elegida
-  * {@param nombre}
-  * {@param nivel}
-  * {@param dificultadNPC}
-  */
-  
-  public NonPlayableCharacter(String nombre, int nivel, int dificultadNPC, RandomGenerator random) {
-    this.nombre = nombre;
-    this.nivel = nivel;
-    int dificultad;
-    if (dificultadNPC == dificultadAleatoria) {
-      dificultad = random.nextInt(3);
-    } else {
-      dificultad = dificultadNPC;
-    }
-    switch (dificultad) {
-      case 0:
-        this.fuerza = 10 + (nivel - 1) * 3;// 30%
-        this.salud = 30 + (nivel - 1) * 15;
-        this.defensa = 2 + (nivel - 1) * 1;
-        break;
-      case 1:
-        this.fuerza = 20 + (nivel - 1) * 6;// 50%
-        this.salud = 40 + (nivel - 1) * 20;
-        this.defensa = 5 + (nivel - 1) * 2;
-        break;
-      case 2:
-        this.fuerza = 30 + (nivel - 1) * 10;// 50%
-        this.salud = 50 + (nivel - 1) * 25;
-        this.defensa = 4 + (nivel - 1) * 4;
-        break;
-    }
-  }
+	private int salud;
+	private int fuerza;
+	private int defensa;
+	private String nombre;
+	private int nivel;
+	private static final int DIFICULTADALEATORIA = -1;
+	private static final double EVITARATAQUE = 0.15;
+	private static final double DANIOATAQUE = 1.5;
+	private static final int EXPERIENCIAPORNIVEL = 30;
+	private static final int DIFERENTESDIFICULTADES = 3;
+	private static final int FUERZABASE1 = 10;
+	private static final int SALUDBASE1 = 30;
+	private static final int DEFENSABASE1 = 2;
+	private static final int AUMENTOFUERZA1 = 3;
+	private static final int AUMENTOSALUD1 = 15;
+	private static final int AUMENTODEFENSA1 = 1;
+	private static final int FUERZABASE2 = 20;
+	private static final int SALUDBASE2 = 40;
+	private static final int DEFENSABASE2 = 5;
+	private static final int AUMENTOFUERZA2 = 6;
+	private static final int AUMENTOSALUD2 = 20;
+	private static final int AUMENTODEFENSA2 = 2;
+	private static final int FUERZABASE3 = 30;
+	private static final int SALUDBASE3 = 50;
+	private static final int DEFENSABASE3 = 4;
+	private static final int AUMENTOFUERZA3 = 10;
+	private static final int AUMENTOSALUD3 = 25;
+	private static final int AUMENTODEFENSA3 = 4;
+	/**
+	 * Establece un personaje no jugable con determinados atributos basados en
+	 * la dificultad elegida
+	 * @param nombre Nombre del personaje
+	 * @param nivel Nivel del personaje
+	 * @param dificultadNPC Dificultad del NPC
+	 * @param random Numero random para esquivar el ataque
+	 */
+	public NonPlayableCharacter(final String nombre, final int nivel,
+			final int dificultadNPC, final RandomGenerator random) {
+		this.nombre = nombre;
+		this.nivel = nivel;
+		int dificultad;
+		if (dificultadNPC == DIFICULTADALEATORIA) {
+			dificultad = random.nextInt(DIFERENTESDIFICULTADES);
+		} else {
+			dificultad = dificultadNPC;
+		}
+		switch (dificultad) {
+		case 0:
+			this.fuerza = FUERZABASE1 + (nivel - 1) * AUMENTOFUERZA1;
+			this.salud = SALUDBASE1 + (nivel - 1) * AUMENTOSALUD1;
+			this.defensa = DEFENSABASE1 + (nivel - 1) * AUMENTODEFENSA1;
+			break;
+		case 1:
+			this.fuerza = FUERZABASE2 + (nivel - 1) * AUMENTOFUERZA2;
+			this.salud = SALUDBASE2 + (nivel - 1) * AUMENTOSALUD2;
+			this.defensa = DEFENSABASE2 + (nivel - 1) * AUMENTODEFENSA2;
+			break;
+		case 2:
+			this.fuerza = FUERZABASE3 + (nivel - 1) * AUMENTOFUERZA3;
+			this.salud = SALUDBASE3 + (nivel - 1) * AUMENTOSALUD3;
+			this.defensa = DEFENSABASE3 + (nivel - 1) * AUMENTODEFENSA3;
+			break;
+		}
+	}
 
-  /**
-  * aumenta el valor del atributo "nivel"
-  */
-  
-  public int otorgarExp() {
-    return this.nivel * 30;
-  }
-  /**
-  * devuelve el valor del atributo "fuerza"
-  * @return int
-  */
-  
-  public int getFuerza() {
-    return fuerza;
-  }
+	/**
+	 * Devuelve la experiencia que necesita por nivel * 30
+	 * @return int Expeciencia por nivel
+	 */
+	public int otorgarExp() {
+		return this.nivel * EXPERIENCIAPORNIVEL;
+	}
 
-  /**
-  * establece un valor para el atributo "fuerza"
-  * {@param fuerza}
-  */
-  
-  public void setFuerza(int fuerza) {
-    this.fuerza = fuerza;
-  }
+	/**
+	 * devuelve el valor del atributo "fuerza"
+	 * @return int Atributo de fuerza
+	 */
+	public int getFuerza() {
+		return fuerza;
+	}
 
-  /**
-  * devuelve el valor del atributo "nombre"
-  * @return String
-  */
-  
-  public String getNombre() {
-    return nombre;
-  }
+	/**
+	 * Establece un valor para el atributo "fuerza"
+	 * @param fuerza Se ingresa el valor de fuerza
+	 */
+	public void setFuerza(final int fuerza) {
+		this.fuerza = fuerza;
+	}
 
-  /**
-  * establece un valor para el atributo "nombre"}
-  * 
-  */
-  
-  public void setNombre(String nombre) {
-    this.nombre = nombre;
-  }
-  /**
-  * devuelve el valor del atributo "nivel"
-  * @return int
-  */
-  
-  public int getNivel() {
-    return nivel;
-  }
-  /**
-  * establece un valor para el atributo "nivel"
-  * {@param nivel}
-  */
-  
-  public void setNivel(int nivel) {
-    this.nivel = nivel;
-  }
+	/**
+	 * Devuelve el valor del atributo "nombre"
+	 * @return String Nombre del personaje
+	 */
+	public String getNombre() {
+		return nombre;
+	}
 
-  /**
-  * devuelve "true" o "false" dependiendo si el personaje no jugable
-  * esta vivo o no (salud mayor a cero)
-  */
-  
-  public boolean estaVivo() {
-    return salud > 0;
-  }
+	/**
+	 * establece un valor para el atributo "nombre"
+	 * @param nombre Nombre del personaje
+	 */
+	public void setNombre(final String nombre) {
+		this.nombre = nombre;
+	}
 
-  /**
-  * devuelve el valor del atributo "defensa"
-  * @return int
-  */
-  
-  public int getDefensa() {
-    return defensa;
-  }
-  /**
-  * establece un valor para el atributo "defensa"
-  * {@param defensa}
-  */
-  
-  public void setDefensa(int defensa) {
-    this.defensa = defensa;
-  }
-  /**
-  * devuelve el valor del atributo "salud"
-  * @return int
-  */
-  
-  public int getSalud() {
-    return salud;
-  }
-  /**
-  * establece un valor para el atributo "salud"
-  * {@param salud}
-  */
-  
-  public void setSalud(int salud) {
-    this.salud = salud;
-  }
+	/**
+	 * Devuelve el valor del atributo "nivel"
+	 * @return int Nivel del personaje
+	 */
+	public int getNivel() {
+		return nivel;
+	}
 
-  /**
-  * permite un ataque del personaje no jugable contra otro personaje
-  * 
-  */
-  
-  public int atacar(Peleable atacado, RandomGenerator random) {
-    if (random.nextDouble() <= 0.15) {
-      return atacado.serAtacado((int) (this.getAtaque() * 1.5), random);
-    } else {
-      return atacado.serAtacado(this.getAtaque(), random);
-    }
-  }
+	/**
+	 * establece un valor para el atributo "nivel"
+	 * @param nivel Nivel del personaje
+	 */
+	public void setNivel(final int nivel) {
+		this.nivel = nivel;
+	}
 
-  /**
-  * reduce la defensa y salud del personaje no jugable cuando es atacado y 
-  * devuelve el daño recibido,
-  * o devuelve cero si esquivo el golpe o su defensa es mayor que el daño del atacante
-  */
-  
-  public int serAtacado(int daño, RandomGenerator random) {
-    if (random.nextDouble() >= 0.15) {
-      daño -= this.getDefensa() / 2;
-      if (daño > 0) {
-        salud -= daño;
-        return daño;
-      }
-      return 0;
-    }
-    return 0;
-  }
+	/**
+	 * Devuelve si el personaje esta vivo o no
+	 * @return true si el personaje esta vivo
+	 */
+	public boolean estaVivo() {
+		return salud > 0;
+	}
 
-  public void despuesDeTurno() { }
-  
-  public void ganarExperiencia(int exp) {
+	/**
+	 * devuelve el valor del atributo "defensa"
+	 * @return int Devuelve el atributo Defensa
+	 */
+	public int getDefensa() {
+		return defensa;
+	}
 
-  }
+	/**
+	 * establece un valor para el atributo "defensa"
+	 * @param defensa Atributo de defensa
+	 */
+	public void setDefensa(final int defensa) {
+		this.defensa = defensa;
+	}
 
-  /**
-  * devuelve el valor del atributo "fuerza"
-  */
-  @Override
-  public int getAtaque() {
-    return fuerza;
-  }
+	/**
+	 * devuelve el valor del atributo "salud"
+	 * @return int Atributo de salud
+	 */
+	public int getSalud() {
+		return salud;
+	}
 
-  /**
-  * establece un valor para el atributo "ataque"
-  */
-  @Override
-  public void setAtaque(int ataque) {
-    this.fuerza = ataque;
-  }
+	/**
+	 * establece un valor para el atributo "salud"
+	 * @param salud Atributo salud
+	 */
+	public void setSalud(final int salud) {
+		this.salud = salud;
+	}
 
-  @Override
-  public void serCurado(int PuntosDeMagia) {}
+	/**
+	 * permite un ataque del personaje no jugable contra otro personaje
+	 * @param atacado Peleable que realiza el ataque
+	 * @param random Numero random para esquivar el ataque
+	 * @return int Del valor del danio realizado
+	 */
+	public int atacar(final Peleable atacado, final RandomGenerator random) {
+		if (random.nextDouble() <= EVITARATAQUE) {
+			return atacado.serAtacado((int) (this.getAtaque() * DANIOATAQUE), random);
+		} else {
+			return atacado.serAtacado(this.getAtaque(), random);
+		}
+	}
+
+	/**
+	 * reduce la defensa y salud del personaje no jugable cuando es atacado y
+	 * devuelve el daño recibido, o devuelve cero si esquivo el golpe o su
+	 * defensa es mayor que el daño del atacante
+	 * @param danio El danio que hacer el atacante
+	 * @param random Numero random para evitar el ataque
+	 * @return danio devuelve el danio realizado
+	 */
+	public int serAtacado(final int danio, final  RandomGenerator random) {
+		if (random.nextDouble() >= EVITARATAQUE) {
+			int auxdanio = danio;
+			auxdanio -= this.getDefensa() / 2;
+			if (auxdanio > 0) {
+				salud -= auxdanio;
+				return auxdanio;
+			}
+			return 0;
+		}
+		return 0;
+	}
+	/**
+	 * Que pasa despues del turno
+	 */
+	public void despuesDeTurno() {
+	}
+	/**
+	 * Aumento de experiencia recibido por parametro
+	 * @param exp Aumenta la Experiencia
+	 */
+	public void ganarExperiencia(final int exp) {
+
+	}
+
+	/**
+	 * devuelve el valor del atributo "fuerza"
+	 * @return fuerza Devuelve la fuerza como int
+	 */
+	@Override
+	public int getAtaque() {
+		return fuerza;
+	}
+
+	/**
+	 * establece un valor para el atributo "ataque"
+	 * @param ataque Es el atributo de ataque
+	 */
+	@Override
+	public void setAtaque(final int ataque) {
+		this.fuerza = ataque;
+	}
+
+	@Override
+	public void serCurado(final int puntosDeMagia) {
+	}
 }

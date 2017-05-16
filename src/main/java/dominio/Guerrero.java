@@ -1,99 +1,109 @@
 package dominio;
+
 /**
- * Tipo de personaje que puede tener un jugador, con habilidades propias de 
+ * Tipo de personaje que puede tener un jugador, con habilidades propias de
  * dicha casta para un Guerrero.
  *
  */
 
 public class Guerrero extends Casta {
 
-  /**
-  * 
-  * {@param prob_crit}
-  * {@param evasion}
-  * {@param daño_crit}
-  */
+	private static final int CANTIDADHABILIDADES = 3;
+	private static final int ENERGIAMINIMA = 10;
+	private static final int BONUSFUERZA = 5;
 
-  public Guerrero(double prob_crit, double evasion, double daño_crit) {
-    super(prob_crit, evasion, daño_crit);
-    this.nombreCasta = "Guerrero";
-  }
+	/**
+	 * crea un personaje de raza "elfo" con nombre y casta enviados por
+	 * parametro
+	 * @param probCritico Porcentaje del golpe critico
+	 * @param evasion Porcentaje de Evasion
+	 * @param ataqueCritico Daño por el golpe critico
+	 */
+	public Guerrero(final double probCritico, final double evasion, final double ataqueCritico) {
+		super(probCritico, evasion, ataqueCritico);
+		this.nombreCasta = "Guerrero";
+	}
 
-  /**
-  * crea la casta "Guerrero" con valores predeterminados
-  */
-  
-  public Guerrero() {
-    super();
-    this.nombreCasta = "Guerrero";
+	/**
+	 * crea la casta "Guerrero" con valores predeterminados
+	 */
+	public Guerrero() {
+		super();
+		this.nombreCasta = "Guerrero";
 
-    habilidadesCasta = new String[3];
-    habilidadesCasta[0] = "Ataque Doble";
-    habilidadesCasta[1] = "Aumentar Defensa";
-    habilidadesCasta[2] = "Ignorar Defensa";
-  }
+		habilidadesCasta = new String[CANTIDADHABILIDADES];
+		habilidadesCasta[0] = "Ataque Doble";
+		habilidadesCasta[1] = "Aumentar Defensa";
+		habilidadesCasta[2] = "Ignorar Defensa";
+	}
 
-  /**
-  * permite el uso de la habilidad "Ataque Doble" propia de la casta "Guerrero"
-  * y establece sus efectos y condicion de uso
-   */
-  
-  public boolean habilidad1(Personaje caster, Peleable atacado) { 
-    if (caster.getEnergia() > 10) {
-      caster.setEnergia(caster.getEnergia() - 10);
-      if (atacado.serAtacado(caster.ataque * 2, new MyRandom()) > 0) {
-        return true;
-      }
-    }
-    return false;
-  }
+	/**
+	 * permite el uso de la habilidad "Ataque Doble" propia de la casta
+	 * "Guerrero" y establece sus efectos y condicion de uso
+	 * @param caster Es el que realiza la habilidad
+	 * @param atacado Es el que recibe el danio
+	 * @return true si se pudo realizar la habilidad
+	 */
+	public boolean habilidad1(final Personaje caster, final Peleable atacado) {
+		if (caster.getEnergia() > ENERGIAMINIMA) {
+			caster.setEnergia(caster.getEnergia() - ENERGIAMINIMA);
+			if (atacado.serAtacado(caster.ataque * 2, new MyRandom()) > 0) {
+				return true;
+			}
+		}
+		return false;
+	}
 
-  /**
-  * permite el uso de la habilidad "Aumentar Defensa" propia de la casta "Guerrero"
-  * y establece sus efectos y condicion de uso
-  */
-  
-  public boolean habilidad2(Personaje caster, Peleable atacado) { 
-    if (caster.getEnergia() > 10) {
-      caster.setEnergia(caster.getEnergia() - 10);
-      caster.setDefensa(caster.getDefensa() + caster.magia);
-      return true;
-    }
-    return false;
-  }
+	/**
+	 * permite el uso de la habilidad "Aumentar Defensa" propia de la casta
+	 * "Guerrero" y establece sus efectos y condicion de uso
+	 * @param caster Es el que realiza la habilidad
+	 * @param atacado Es el que recibe el danio
+	 * @return true si se pudo realizar la habilidad
+	 */
+	public boolean habilidad2(final Personaje caster, final Peleable atacado) {
+		if (caster.getEnergia() > ENERGIAMINIMA) {
+			caster.setEnergia(caster.getEnergia() - ENERGIAMINIMA);
+			caster.setDefensa(caster.getDefensa() + caster.magia);
+			return true;
+		}
+		return false;
+	}
 
-  /**
-  * permite el uso de la habilidad "Ignorar Defensa" propia de la casta "Guerrero"
-  * y establece sus efectos y condicion de uso
-  */
-  
-  public boolean habilidad3(Personaje caster, Peleable atacado) { 
-    if (caster.getEnergia() > 10) {
-      caster.setEnergia(caster.getEnergia() - 10);
-      if (atacado instanceof Personaje) {
-        int defensa_original = ((Personaje) atacado).getDefensa();
-        ((Personaje) atacado).setDefensa(0);
-        if (atacado.serAtacado(caster.ataque, new MyRandom()) > 0) {
-          ((Personaje) atacado).setDefensa(defensa_original);
-          return true;
-        }
-      }
-    }
-    return false;
-  }
+	/**
+	 * permite el uso de la habilidad "Ignorar Defensa" propia de la casta
+	 * "Guerrero" y establece sus efectos y condicion de uso
+	 * @param caster Es el que realiza la habilidad
+	 * @param atacado Es el que recibe el danio
+	 * @return true si se pudo realizar la habilidad
+	 */
+	public boolean habilidad3(final Personaje caster, final Peleable atacado) {
+		if (caster.getEnergia() > ENERGIAMINIMA) {
+			caster.setEnergia(caster.getEnergia() - ENERGIAMINIMA);
+			if (atacado instanceof Personaje) {
+				int defensaOriginal = ((Personaje) atacado).getDefensa();
+				((Personaje) atacado).setDefensa(0);
+				if (atacado.serAtacado(caster.ataque, new MyRandom()) > 0) {
+					((Personaje) atacado).setDefensa(defensaOriginal);
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 
-@Override
-public int getBonusFuerza() {
-	return 5;
-}
+	@Override
+	public int getBonusFuerza() {
+		return BONUSFUERZA;
+	}
 
-@Override
-public int getBonusInteligencia() {
-	return 0;
-}
+	@Override
+	public int getBonusInteligencia() {
+		return 0;
+	}
 
-@Override
-public int getBonusDestreza() {
-	return 0;
-}
+	@Override
+	public int getBonusDestreza() {
+		return 0;
+	}
 }
