@@ -58,4 +58,26 @@ public interface Peleable {
 	 * @param puntosDeMagia Atributo de Magia que depende de la Inteligencia
 	 */
 	void serCurado(int puntosDeMagia);
+	/**
+	 * el personaje ve reducido su atributo "energia", debido a un danio enviado
+	 * por parametro, siempre y cuando dicho danio sea mayor que la defensa del
+	 * personaje
+	 * @param danio Danio a realizar
+	 * @return int danio realizado
+	 */
+	int serDesernegizado(final int danio);
+	/**
+	 * el personaje ve reducido su atributo "salud", debido a un danio enviado
+	 * por parametro, siempre y cuando dicho danio sea mayor que la defensa del
+	 * personaje
+	 * @param danio danio a realizar
+	 * @return int danio realizado
+	 */
+	int serRobadoSalud(final int danio);
+	/**
+	 * Determina si es un NonPlayableCharacter
+	 * @return
+	 */
+	boolean isNPC();
+
 }

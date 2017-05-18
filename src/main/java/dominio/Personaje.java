@@ -795,4 +795,12 @@ public abstract class Personaje implements Peleable, Serializable {
 	public int getY() {
 		return y;
 	}
+	/**
+	 * Determina si es un NonPlayableCharacter
+	 * @return
+	 */
+	@Override
+	public boolean isNPC() {
+		return false;
+	}
 }

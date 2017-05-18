@@ -236,4 +236,22 @@ public class NonPlayableCharacter implements Peleable {
 	@Override
 	public void serCurado(final int puntosDeMagia) {
 	}
+
+	@Override
+	public int serDesernegizado(int danio) {
+		return 0;
+	}
+
+	@Override
+	public int serRobadoSalud(int danio) {
+		return 0;
+	}
+	/**
+	 * Determina si es un NonPlayableCharacter
+	 * @return
+	 */
+	@Override
+	public boolean isNPC() {
+		return true;
+	}
 }
