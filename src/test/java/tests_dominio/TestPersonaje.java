@@ -38,6 +38,7 @@ public class TestPersonaje {
 	public void testElfo() {
 		Elfo e = new Elfo("Nicolas", new Guerrero(), 1);
 		Assert.assertTrue(e.getSalud() == 100);
+		System.out.println(e.getEnergia());
 		Assert.assertTrue(e.getEnergia() == 110);
 		Assert.assertTrue(e.getFuerza() == 15);
 		Assert.assertTrue(e.getDestreza() == 10);
@@ -139,9 +140,7 @@ public class TestPersonaje {
 		h.setExperiencia(5);
 		Assert.assertTrue(5 == h.getExperiencia());
 		h.setNombre("julian");
-		Assert.assertEquals("julian", h.getNombre());
-		h.setNombreRaza("orco");
-		Assert.assertEquals("orco", h.getNombreRaza());
+		Assert.assertEquals("julian", h.getNombre());		
 		Casta c = new Guerrero();
 		h.setCasta(c);
 		Assert.assertTrue(h.getCasta().getNombreCasta() == c.getNombreCasta());
