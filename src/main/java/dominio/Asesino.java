@@ -7,7 +7,6 @@ package dominio;
 
 public class Asesino extends Casta {
 
-	private static final int CANTIDADHABILIDADES = 3;
 	private static final int ENERGIAMINIMA = 10;
 	private static final double EVITARDANIO = 0.5;
 	private static final double AUMENTOEVASION = 0.15;
@@ -20,7 +19,6 @@ public class Asesino extends Casta {
 	 */
 	public Asesino(final double probCritico, final double evasion, final double ataqueCritico) {
 		super(probCritico, evasion, ataqueCritico);
-		this.nombreCasta = "Asesino";
 	}
 
 	/**
@@ -28,11 +26,6 @@ public class Asesino extends Casta {
 	 */
 	public Asesino() {
 		super();
-		this.nombreCasta = "Asesino";
-		habilidadesCasta = new String[CANTIDADHABILIDADES];
-		habilidadesCasta[0] = "Golpe Critico";
-		habilidadesCasta[1] = "Aumentar Evasion";
-		habilidadesCasta[2] = "Robar";
 	}
 
 	/**
@@ -98,5 +91,13 @@ public class Asesino extends Casta {
 	@Override
 	public int getBonusDestreza() {
 		return BONUSDESTREZA;
+	}
+	@Override
+	public final String getNombreCasta() {
+		return "Asesino";
+	}
+	@Override
+	public final String[] getHabilidadesCasta() {
+		return new String[] {"Golpe Critico", "Aumentar Evasion", "Robar"};
 	}
 }

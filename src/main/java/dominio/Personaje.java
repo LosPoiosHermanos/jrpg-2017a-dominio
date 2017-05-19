@@ -21,46 +21,37 @@ public abstract class Personaje extends Character implements Peleable, Serializa
 	protected int idPersonaje;
 	protected int x;
 	protected int y;
-
+	protected static int[] tablaDeNiveles;
 	protected String nombreRaza;
-
+	protected String nombreCasta;
+	protected String[] habilidadesRaza = new String[CANTHABILIDADESRAZA];
+	protected String[] habilidadesCasta = new String[CANTHABILIDADESCASTA];
 	protected Casta casta;
-
 	protected Alianza clan = null;
-	public static int[] tablaDeNiveles;
-
-	protected String[] habilidadesRaza;
-	private static final int SALUDINICIAL = 100;
-	private static final int FUERZAINICIAL = 10;
-	private static final int DEFENSAINICIAL = 10;
-	private static final int TABLANIVELES = 101;
-	private static final int TABLANIVELES50 = 50;
-	private static final int INTELIGENCIAINICIAL = 10;
-	private static final int DESTREZAINICIAL = 10;
-	private static final int SALUDTOPEINICIAL = 100;
-	private static final int ENERGIATOPEINICIAL = 100;
-	private static final int ENERGIAMINIMA = 10;
-	private static final int MAXIMONIVEL = 100;
-	private static final int MAXIMAFUERZA = 200;
-	private static final int MAXIMADESTREZA = 200;
-	private static final int MAXIMAINTELIGENCIA = 200;
-	private static final double MULTIPLICADORFUERZA = 1.5;
-	private static final double MULTIPLICADORINTELIGENCIA = 1.5;
-	private static final int DIVISORDEDESTREZA = 1000;
-	private static final int EXPERIENCIAPORNIVEL = 40;
-	private static final int SALUDEXTRAPORNIVEL = 25;
-	private static final int ENERGIAEXTRAPORNIVEL = 20;
-
+	protected static final int SALUDINICIAL = 100;
+	protected static final int FUERZAINICIAL = 10;
+	protected static final int DEFENSAINICIAL = 10;
+	protected static final int TABLANIVELES = 101;
+	protected static final int TABLANIVELES50 = 50;
+	protected static final int INTELIGENCIAINICIAL = 10;
+	protected static final int DESTREZAINICIAL = 10;
+	protected static final int SALUDTOPEINICIAL = 100;
+	protected static final int ENERGIATOPEINICIAL = 100;
+	protected static final int ENERGIAMINIMA = 10;
+	protected static final int MAXIMONIVEL = 100;
+	protected static final int MAXIMAFUERZA = 200;
+	protected static final int MAXIMADESTREZA = 200;
+	protected static final int MAXIMAINTELIGENCIA = 200;
+	protected static final double MULTIPLICADORFUERZA = 1.5;
+	protected static final double MULTIPLICADORINTELIGENCIA = 1.5;
+	protected static final int DIVISORDEDESTREZA = 1000;
+	protected static final int EXPERIENCIAPORNIVEL = 40;
+	protected static final int SALUDEXTRAPORNIVEL = 25;
+	protected static final int ENERGIAEXTRAPORNIVEL = 20;
+	protected static final int CANTHABILIDADESRAZA = 2;
+	protected static final int CANTHABILIDADESCASTA = 3;
 	/**
-	 * devuelve las habilidades de la raza
-	 * @return String[]
-	 */
-	public String[] getHabilidadesRaza() {
-		return habilidadesRaza;
-	}
-
-	/**
-	 * devuelve las habilidades de la casta
+	 * Devuelve las habilidades de la casta
 	 * @return String[]
 	 */
 	public String[] getHabilidadesCasta() {
@@ -94,13 +85,21 @@ public abstract class Personaje extends Character implements Peleable, Serializa
 		experiencia = 0;
 		inteligencia = INTELIGENCIAINICIAL;
 		destreza = DESTREZAINICIAL;
-		this.aumentarFuerza(casta.getBonusFuerza());
-		this.inteligencia += casta.getBonusInteligencia();
-		this.destreza += casta.getBonusDestreza();
-		x = 0;
-		y = 0;
 		saludTope = SALUDTOPEINICIAL;
 		energiaTope = ENERGIATOPEINICIAL;
+		this.aumentarSaludTope(getSALUDEXTRA());
+		this.aumentarEnergiaTope(getENERGIAEXTRA());
+		this.aumentarFuerza(casta.getBonusFuerza());
+		this.aumentarDestreza(casta.getBonusDestreza());
+		this.aumentarInteligencia(casta.getBonusInteligencia());
+		nombreRaza = getNombreRaza();
+		nombreCasta = casta.getNombreCasta();
+		habilidadesRaza = getHabilidadesRaza();
+		habilidadesCasta = casta.getHabilidadesCasta();
+		x = 0;
+		y = 0;
+		this.aumentarSalud(getSALUDEXTRA());
+		this.aumentarEnergia(energiaTope);
 		ataque = this.calcularPuntosDeAtaque();
 		magia = this.calcularPuntosDeMagia();
 	}
@@ -133,14 +132,6 @@ public abstract class Personaje extends Character implements Peleable, Serializa
 		this.idPersonaje = idPersonaje;
 		this.ataque = this.calcularPuntosDeAtaque();
 		this.magia = this.calcularPuntosDeMagia();
-	}
-
-	/**
-	 * Devuelve el nombre de la raza
-	 * @return String Nombre de la Raza
-	 */
-	public String getNombreRaza() {
-		return nombreRaza;
 	}
 
 	/**
@@ -705,5 +696,76 @@ public abstract class Personaje extends Character implements Peleable, Serializa
 	 */
 	public boolean isNPC() {
 		return false;
+	}
+	/**
+	 * Devuelve el Extra de Salud por la Raza
+	 * @return int Es la salud extra, puede ser
+	 * 0(Elfo) , 5(Humano) o 10 (Orco)
+	 */
+	public abstract int getSALUDEXTRA();
+	/**
+	 * Devuelve el Extra de Energia por la Raza
+	 * @return int Es la Energia extra, puede ser
+	 * 0(Orco) , 5(Humano) o 10 (Elfo)
+	 */
+	public abstract int getENERGIAEXTRA();
+	/**
+	 * Devuelve el nombre de la raza
+	 * @return String Nombre de la Raza
+	 */
+	public abstract String getNombreRaza();
+	/**
+	 * devuelve las habilidades de la raza
+	 * @return String[] Las habilidades de la Raza
+	 */
+	public abstract String[] getHabilidadesRaza();
+	/**
+	 * Aumenta el valor actual de la saludTope con el parametro
+	 * @param aumento Valor que se le suma al actual
+	 */
+	public final void aumentarSaludTope(final int aumento) {
+		saludTope += aumento;
+	}
+	/**
+	 * Aumenta el valor actual de la energiaTope con el parametro
+	 * @param aumento Valor que se le suma al actual
+	 */
+	public final void aumentarEnergiaTope(final int aumento) {
+		energiaTope += aumento;
+	}
+	/**
+	 * Aumenta el valor actual de la energia con el parametro
+	 * @param aumento Valor que se le suma al actual
+	 */
+	public final void aumentarEnergia(final int aumento) {
+		energia += aumento;
+	}
+	/**
+	 * Aumenta el valor actual de la ataque con el parametro
+	 * @param aumento Valor que se le suma al actual
+	 */
+	public final void aumentarAtaque(final int aumento) {
+		ataque += aumento;
+	}
+	/**
+	 * Aumenta el valor actual de la destreza con el parametro
+	 * @param aumento Valor que se le suma al actual
+	 */
+	public final void aumentarDestreza(final int aumento) {
+		destreza += aumento;
+	}
+	/**
+	 * Aumenta el valor actual de la magia con el parametro
+	 * @param aumento Valor que se le suma al actual
+	 */
+	public final void aumentarMagia(final int aumento) {
+		magia += aumento;
+	}
+	/**
+	 * Aumenta el valor actual de la inteligencia con el parametro
+	 * @param aumento Valor que se le suma al actual
+	 */
+	public final void aumentarInteligencia(final int aumento) {
+		inteligencia += aumento;
 	}
 }

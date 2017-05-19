@@ -8,7 +8,6 @@ package dominio;
 
 public class Hechicero extends Casta {
 	private static final int ENERGIAMINIMA = 10;
-	private static final int CANTIDADHABILIDADES = 3;
 	private static final int BONUSINTELIGENCIA = 5;
 	private static final double DANIOPORPUNTOSDEMAGIA = 1.5;
 	/**
@@ -19,7 +18,6 @@ public class Hechicero extends Casta {
 	 */
 	public Hechicero(final double probCritico, final double evasion, final double ataqueCritico) {
 		super(probCritico, evasion, ataqueCritico);
-		this.nombreCasta = "Hechicero";
 	}
 
 	/**
@@ -28,11 +26,6 @@ public class Hechicero extends Casta {
 
 	public Hechicero() {
 		super();
-		this.nombreCasta = "Hechicero";
-		habilidadesCasta = new String[CANTIDADHABILIDADES];
-		habilidadesCasta[0] = "Bola de Fuego";
-		habilidadesCasta[1] = "Curar Aliado";
-		habilidadesCasta[2] = "Robar Energia y Salud";
 	}
 
 	/**
@@ -91,19 +84,24 @@ public class Hechicero extends Casta {
 		}
 		return false;
 	}
-
 	@Override
 	public int getBonusFuerza() {
 		return 0;
 	}
-
 	@Override
 	public int getBonusInteligencia() {
 		return BONUSINTELIGENCIA;
 	}
-
 	@Override
 	public int getBonusDestreza() {
 		return 0;
 	}
+	  @Override
+	  public final String getNombreCasta() {
+			return "Hechicero";
+		}
+	  @Override
+		public final String[] getHabilidadesCasta() {
+		  return new String[] {"Bola de Fuego", "Curar Aliado", "Robar Energia y Salud"};
+		}
 }

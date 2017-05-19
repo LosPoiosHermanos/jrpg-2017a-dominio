@@ -21,7 +21,6 @@ public class Guerrero extends Casta {
 	 */
 	public Guerrero(final double probCritico, final double evasion, final double ataqueCritico) {
 		super(probCritico, evasion, ataqueCritico);
-		this.nombreCasta = "Guerrero";
 	}
 
 	/**
@@ -29,12 +28,6 @@ public class Guerrero extends Casta {
 	 */
 	public Guerrero() {
 		super();
-		this.nombreCasta = "Guerrero";
-
-		habilidadesCasta = new String[CANTIDADHABILIDADES];
-		habilidadesCasta[0] = "Ataque Doble";
-		habilidadesCasta[1] = "Aumentar Defensa";
-		habilidadesCasta[2] = "Ignorar Defensa";
 	}
 
 	/**
@@ -105,5 +98,14 @@ public class Guerrero extends Casta {
 	@Override
 	public int getBonusDestreza() {
 		return 0;
+	}
+	@Override
+	public final String getNombreCasta() {
+		return "Guerrero";
+	}
+
+	@Override
+	public final String[] getHabilidadesCasta() {
+		return new String[] {"Ataque Doble", "Aumentar Defensa", "Ignorar Defensa"};
 	}
 }

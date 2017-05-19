@@ -20,11 +20,6 @@ public class Humano extends Personaje {
 	 */
 	public Humano(final String nombre, final Casta casta, final int id) {
 		super(nombre, casta, id);
-		saludTope += SALUDEXTRA;
-		energiaTope += ENERGIAEXTRA;
-		this.setSalud(saludTope);
-		energia = energiaTope;
-		nombreRaza = "Humano";
 	}
 
 	/**
@@ -45,10 +40,6 @@ public class Humano extends Personaje {
 			final int destreza, final int inteligencia, final Casta casta,
 			final int experiencia, final int nivel, final int idPersonaje) {
 		super(nombre, salud, energia, fuerza, destreza, inteligencia, casta, experiencia, nivel, idPersonaje);
-		nombreRaza = "Humano";
-		habilidadesRaza = new String[CANTIDADHABILIDADES];
-		habilidadesRaza[0] = "Incentivar";
-		habilidadesRaza[1] = "Golpe Fatal";
 	}
 
 	/**
@@ -84,4 +75,20 @@ public class Humano extends Personaje {
 		this.setEnergia(this.getEnergia() - ENERGIAMINIMA);
 		return false;
 	}
+	 @Override
+		public final int getSALUDEXTRA() {
+			return SALUDEXTRA;
+		}
+	  @Override
+		public final int getENERGIAEXTRA() {
+			return ENERGIAEXTRA;
+		}
+	  @Override
+	  public final String getNombreRaza() {
+			return "Humano";
+		}
+	  @Override
+		public final String[] getHabilidadesRaza() {
+			return new String[] {"Incentivar", "Golpe Fatal"};
+		}
 }

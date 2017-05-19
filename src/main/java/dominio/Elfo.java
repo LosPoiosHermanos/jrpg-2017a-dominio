@@ -8,7 +8,6 @@ package dominio;
 public class Elfo extends Personaje {
 
 	private static final int ENERGIAMINIMA = 10;
-	private static final int CANTIDADHABILIDADES = 2;
 	private static final int ENERGIAEXTRA = 10;
 	private static final int DANIOPORNIVEL = 10;
 	/**
@@ -21,13 +20,6 @@ public class Elfo extends Personaje {
 
 	public Elfo(final String nombre, final Casta casta, final int id) {
 		super(nombre, casta, id);
-		energiaTope += ENERGIAEXTRA;
-		this.setSalud(saludTope);
-		energia = energiaTope;
-		nombreRaza = "Elfo";
-		habilidadesRaza = new String[CANTIDADHABILIDADES];
-		habilidadesRaza[0] = "Golpe Level";
-		habilidadesRaza[1] = "Ataque Bosque";
 	}
 
 	/**
@@ -48,10 +40,6 @@ public class Elfo extends Personaje {
 			final int destreza, final int inteligencia, final Casta casta,
 			final int experiencia, final int nivel, final int idPersonaje) {
 		super(nombre, salud, energia, fuerza, destreza, inteligencia, casta, experiencia, nivel, idPersonaje);
-		nombreRaza = "Elfo";
-		habilidadesRaza = new String[2];
-		habilidadesRaza[0] = "Golpe Level";
-		habilidadesRaza[1] = "Ataque Bosque";
 	}
 
 	/**
@@ -87,4 +75,20 @@ public class Elfo extends Personaje {
 		}
 		return false;
 	}
+	 @Override
+		public final int getSALUDEXTRA() {
+			return 0;
+		}
+	  @Override
+		public final int getENERGIAEXTRA() {
+			return ENERGIAEXTRA;
+		}
+	  @Override
+	  public final String getNombreRaza() {
+			return "Elfo";
+		}
+	  @Override
+		public final String[] getHabilidadesRaza() {
+			return new String[] {"Golpe Level", "Ataque Bosque"};
+		}
 }

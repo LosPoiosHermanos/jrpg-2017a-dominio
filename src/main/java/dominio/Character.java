@@ -103,20 +103,20 @@ public abstract class Character {
 		nivel++;
 	}
 	/**
+	 * Aumenta la salud del personaje segun el parametro,
+	 * lo aumenta, no lo establece
+	 * @param aumento Valor que se le suma al actual
+	 */
+	public final void aumentarSalud(final int aumento) {
+		salud += aumento;
+	}
+	/**
 	 * Aumenta la Fuerza del personaje segun el parametro,
 	 * lo aumenta, no lo establece
 	 * @param aumento Valor que se le suma al actual
 	 */
 	public final void aumentarFuerza(final int aumento) {
 		fuerza += aumento;
-	}
-	/**
-	 * * Aumenta la salud del personaje segun el parametro,
-	 * lo aumenta, no lo establece
-	 * @param aumento Valor que se le suma al actual
-	 */
-	public final void aumentarSalud(final int aumento) {
-		salud += aumento;
 	}
 	/**
 	 * Aumenta la defensa del personaje segun el parametro,
