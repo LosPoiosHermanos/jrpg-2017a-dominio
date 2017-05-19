@@ -5,13 +5,8 @@ package dominio;
  * estadisticas y atributos
  *
  */
-public class NonPlayableCharacter implements Peleable {
+public class NonPlayableCharacter extends Character implements Peleable {
 
-	private int salud;
-	private int fuerza;
-	private int defensa;
-	private String nombre;
-	private int nivel;
 	private static final int DIFICULTADALEATORIA = -1;
 	private static final double EVITARATAQUE = 0.15;
 	private static final double DANIOATAQUE = 1.5;
@@ -45,8 +40,7 @@ public class NonPlayableCharacter implements Peleable {
 	 */
 	public NonPlayableCharacter(final String nombre, final int nivel,
 			final int dificultadNPC, final RandomGenerator random) {
-		this.nombre = nombre;
-		this.nivel = nivel;
+		super(0, 0, 0, nombre, nivel);
 		int dificultad;
 		if (dificultadNPC == DIFICULTADALEATORIA) {
 			dificultad = random.nextInt(DIFERENTESDIFICULTADES);
@@ -55,19 +49,19 @@ public class NonPlayableCharacter implements Peleable {
 		}
 		switch (dificultad) {
 		case 0:
-			this.fuerza = FUERZABASE1 + (nivel - 1) * AUMENTOFUERZA1;
-			this.salud = SALUDBASE1 + (nivel - 1) * AUMENTOSALUD1;
-			this.defensa = DEFENSABASE1 + (nivel - 1) * AUMENTODEFENSA1;
+			this.setFuerza(FUERZABASE1 + (nivel - 1) * AUMENTOFUERZA1);
+			this.setSalud(SALUDBASE1 + (nivel - 1) * AUMENTOSALUD1);
+			this.setDefensa(DEFENSABASE1 + (nivel - 1) * AUMENTODEFENSA1);
 			break;
 		case 1:
-			this.fuerza = FUERZABASE2 + (nivel - 1) * AUMENTOFUERZA2;
-			this.salud = SALUDBASE2 + (nivel - 1) * AUMENTOSALUD2;
-			this.defensa = DEFENSABASE2 + (nivel - 1) * AUMENTODEFENSA2;
+			this.setFuerza(FUERZABASE2 + (nivel - 1) * AUMENTOFUERZA2);
+			this.setSalud(SALUDBASE2 + (nivel - 1) * AUMENTOSALUD2);
+			this.setDefensa(DEFENSABASE2 + (nivel - 1) * AUMENTODEFENSA2);
 			break;
 		case 2:
-			this.fuerza = FUERZABASE3 + (nivel - 1) * AUMENTOFUERZA3;
-			this.salud = SALUDBASE3 + (nivel - 1) * AUMENTOSALUD3;
-			this.defensa = DEFENSABASE3 + (nivel - 1) * AUMENTODEFENSA3;
+			this.setFuerza(FUERZABASE3 + (nivel - 1) * AUMENTOFUERZA3);
+			this.setSalud(SALUDBASE3 + (nivel - 1) * AUMENTOSALUD3);
+			this.setDefensa(DEFENSABASE3 + (nivel - 1) * AUMENTODEFENSA3);
 			break;
 		}
 	}
@@ -77,96 +71,10 @@ public class NonPlayableCharacter implements Peleable {
 	 * @return int Expeciencia por nivel
 	 */
 	public int otorgarExp() {
-		return this.nivel * EXPERIENCIAPORNIVEL;
+		return this.getNivel() * EXPERIENCIAPORNIVEL;
 	}
 
-	/**
-	 * devuelve el valor del atributo "fuerza"
-	 * @return int Atributo de fuerza
-	 */
-	public int getFuerza() {
-		return fuerza;
-	}
 
-	/**
-	 * Establece un valor para el atributo "fuerza"
-	 * @param fuerza Se ingresa el valor de fuerza
-	 */
-	public void setFuerza(final int fuerza) {
-		this.fuerza = fuerza;
-	}
-
-	/**
-	 * Devuelve el valor del atributo "nombre"
-	 * @return String Nombre del personaje
-	 */
-	public String getNombre() {
-		return nombre;
-	}
-
-	/**
-	 * establece un valor para el atributo "nombre"
-	 * @param nombre Nombre del personaje
-	 */
-	public void setNombre(final String nombre) {
-		this.nombre = nombre;
-	}
-
-	/**
-	 * Devuelve el valor del atributo "nivel"
-	 * @return int Nivel del personaje
-	 */
-	public int getNivel() {
-		return nivel;
-	}
-
-	/**
-	 * establece un valor para el atributo "nivel"
-	 * @param nivel Nivel del personaje
-	 */
-	public void setNivel(final int nivel) {
-		this.nivel = nivel;
-	}
-
-	/**
-	 * Devuelve si el personaje esta vivo o no
-	 * @return true si el personaje esta vivo
-	 */
-	public boolean estaVivo() {
-		return salud > 0;
-	}
-
-	/**
-	 * devuelve el valor del atributo "defensa"
-	 * @return int Devuelve el atributo Defensa
-	 */
-	public int getDefensa() {
-		return defensa;
-	}
-
-	/**
-	 * establece un valor para el atributo "defensa"
-	 * @param defensa Atributo de defensa
-	 */
-	public void setDefensa(final int defensa) {
-		this.defensa = defensa;
-	}
-
-	/**
-	 * devuelve el valor del atributo "salud"
-	 * @return int Atributo de salud
-	 */
-	public int getSalud() {
-		return salud;
-	}
-
-	/**
-	 * establece un valor para el atributo "salud"
-	 * @param salud Atributo salud
-	 */
-	public void setSalud(final int salud) {
-		this.salud = salud;
-	}
 
 	/**
 	 * permite un ataque del personaje no jugable contra otro personaje
@@ -183,7 +91,7 @@ public class NonPlayableCharacter implements Peleable {
 	}
 
 	/**
-	 * reduce la defensa y salud del personaje no jugable cuando es atacado y
+	 * reduce la salud del personaje no jugable cuando es atacado y
 	 * devuelve el daño recibido, o devuelve cero si esquivo el golpe o su
 	 * defensa es mayor que el daño del atacante
 	 * @param danio El danio que hacer el atacante
@@ -195,17 +103,12 @@ public class NonPlayableCharacter implements Peleable {
 			int auxdanio = danio;
 			auxdanio -= this.getDefensa() / 2;
 			if (auxdanio > 0) {
-				salud -= auxdanio;
+				this.setSalud(this.getSalud() - auxdanio);
 				return auxdanio;
 			}
 			return 0;
 		}
 		return 0;
-	}
-	/**
-	 * Que pasa despues del turno
-	 */
-	public void despuesDeTurno() {
 	}
 	/**
 	 * Aumento de experiencia recibido por parametro
@@ -221,7 +124,7 @@ public class NonPlayableCharacter implements Peleable {
 	 */
 	@Override
 	public int getAtaque() {
-		return fuerza;
+		return this.getFuerza();
 	}
 
 	/**
@@ -230,28 +133,25 @@ public class NonPlayableCharacter implements Peleable {
 	 */
 	@Override
 	public void setAtaque(final int ataque) {
-		this.fuerza = ataque;
+		this.setFuerza(ataque);
 	}
 
 	@Override
 	public void serCurado(final int puntosDeMagia) {
 	}
-
 	@Override
-	public int serDesernegizado(int danio) {
-		return 0;
-	}
-
-	@Override
-	public int serRobadoSalud(int danio) {
-		return 0;
-	}
-	/**
-	 * Determina si es un NonPlayableCharacter
-	 * @return
-	 */
-	@Override
-	public boolean isNPC() {
-		return true;
-	}
+ 	public int serDesernegizado(final int danio) {
+ 		return 0;
+ 	}
+ 	@Override
+ 	public int serRobadoSalud(final int danio) {
+ 		return 0;
+ 	}
+ 	/**
+ 	 * Determina si es un NonPlayableCharacter
+ 	 * @return boolean Devuelve True siempre
+ 	 */
+ 	public boolean isNPC() {
+ 		return true;
+ 	}
 }

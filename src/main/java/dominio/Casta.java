@@ -13,16 +13,18 @@ public abstract class Casta implements Serializable {
 	protected double dañoCritico;
 	protected String nombreCasta;
 	protected String[] habilidadesCasta;
-
+	private static final double GOLPECRITICO = 0.2;
+	private static final double EVITARDANIO = 0.2;
+	private static final double DANIOCRITICO = 1.5;
+	//CONSTRUCTORES
 	/**
 	 * Establece el valor por defecto de las diferentes habilidades de la casta.
 	 */
 	public Casta() {
-		this.probabilidadGolpeCritico = 0.2;
-		this.probabilidadEvitarDaño = 0.2;
-		this.dañoCritico = 1.5;
+		this.probabilidadGolpeCritico = GOLPECRITICO;
+		this.probabilidadEvitarDaño = EVITARDANIO;
+		this.dañoCritico = DANIOCRITICO;
 	}
-
 	/**
 	 * Establece las estadisticas para las diferentes habilidades de una casta
 	 * determinada
@@ -35,7 +37,7 @@ public abstract class Casta implements Serializable {
 		this.probabilidadEvitarDaño = evasion;
 		this.dañoCritico = ataqueCritico;
 	}
-
+	//METODOS ABSTRACTOS
 	/**
 	 * Cada personaje tiene disponible 3 habilidades, siendo estas diferentes y
 	 * con efectos distintos dependiendo de que casta se trate
@@ -75,6 +77,7 @@ public abstract class Casta implements Serializable {
 	 * @return int Bonus de Destreza
 	 */
 	public abstract int getBonusDestreza();
+	//METODOS
 	/**
 	 * Devuelve el nombre del personaje
 	 * @return String Nombre de la Casta
@@ -82,16 +85,13 @@ public abstract class Casta implements Serializable {
 	public String getNombreCasta() {
 		return this.nombreCasta;
 	}
-
 	/**
 	 * devuelve las habilidades de la casta
 	 * @return String[] Devuelve un String de la habilidad/es
 	 */
-
 	public String[] getHabilidadesCasta() {
 		return habilidadesCasta;
 	}
-
 	/**
 	 * devuelve el valor de "probabilidadGolpeCritico"
 	 * @return double devuelve probabilidadGolpeCritico
@@ -99,7 +99,6 @@ public abstract class Casta implements Serializable {
 	public double getProbabilidadGolpeCritico() {
 		return probabilidadGolpeCritico;
 	}
-
 	/**
 	 * establece un valor determinado para la habilidad de la casta probabilidadGolpeCritico
 	 * @param probabilidadGolpeCritico Se establece probabilidadGolpeCritico
@@ -107,7 +106,6 @@ public abstract class Casta implements Serializable {
 	public void setProbabilidadGolpeCritico(final double probabilidadGolpeCritico) {
 		this.probabilidadGolpeCritico = probabilidadGolpeCritico;
 	}
-
 	/**
 	 * devuelve el valor de "probabilidadEvitarDaño"
 	 * @return double Devuelve Probabilidad de Evitar el daño
@@ -115,7 +113,6 @@ public abstract class Casta implements Serializable {
 	public double getProbabilidadEvitarDaño() {
 		return probabilidadEvitarDaño;
 	}
-
 	/**
 	 *  establece un valor para probabilidadEvitarDaño
 	 *  @param probabilidadEvitarDaño Se establece Probabilidad de Evitar el daño
@@ -123,7 +120,6 @@ public abstract class Casta implements Serializable {
 	public void setProbabilidadEvitarDaño(final double probabilidadEvitarDaño) {
 		this.probabilidadEvitarDaño = probabilidadEvitarDaño;
 	}
-
 	/**
 	 * devuelve el valor de "dañoCritico"
 	 * @return double
@@ -131,7 +127,6 @@ public abstract class Casta implements Serializable {
 	public double getDañoCritico() {
 		return dañoCritico;
 	}
-
 	/**
 	 * @param dañoCritico establece un valor para "dañoCritico"
 	 */

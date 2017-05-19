@@ -36,7 +36,7 @@ public class Asesino extends Casta {
 	}
 
 	/**
-	 * permite el uso de la habilidad "golpe critico" del
+	 * permite el uso de la habilidad "Golpe Critico" del
 	 * "Asesino" y establece sus efectos y condicion de uso
 	 * @param caster Es el que castea la habilidad
 	 * @param atacado Es el que ataca
@@ -54,8 +54,8 @@ public class Asesino extends Casta {
 	}
 
 	/**
-	 * permite el uso de la habilidad "evasion" propia del "Asesino" y
-	 * aumenta el valor de la probabilidad hasta un 50%
+	 * permite el uso de la habilidad "Aumentar Evasion" propia del "Asesino" y
+	 * aumenta el valor de la probabilidad hasta un maximo del 50%
 	 * @param caster Es el que castea la habilidad
 	 * @param atacado Es el que ataca
 	 * @return true Si se puede utilizar la habilidad del Evasion

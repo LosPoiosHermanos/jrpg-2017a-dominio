@@ -22,7 +22,7 @@ public class Humano extends Personaje {
 		super(nombre, casta, id);
 		saludTope += SALUDEXTRA;
 		energiaTope += ENERGIAEXTRA;
-		salud = saludTope;
+		this.setSalud(saludTope);
 		energia = energiaTope;
 		nombreRaza = "Humano";
 	}

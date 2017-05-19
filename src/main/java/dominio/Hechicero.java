@@ -80,8 +80,10 @@ public class Hechicero extends Casta {
 		if (caster.getEnergia() > ENERGIAMINIMA) {
 			caster.setEnergia(caster.getEnergia() - ENERGIAMINIMA);
 			if (!atacado.isNPC()) {
-				int energiaRobada =	atacado.serDesernegizado(caster.calcularPuntosDeMagia());
-				int saludRobada = atacado.serRobadoSalud(caster.calcularPuntosDeMagia() / 2);
+				int energiaRobada =	((Personaje)
+						atacado).serDesernegizado(caster.calcularPuntosDeMagia());
+				int saludRobada = ((Personaje)
+						atacado).serRobadoSalud(caster.calcularPuntosDeMagia() / 2);
 				caster.serEnergizado(energiaRobada);
 				caster.serCurado(saludRobada);
 				return true;

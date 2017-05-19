@@ -13,7 +13,7 @@ public class Guerrero extends Casta {
 	private static final int BONUSFUERZA = 5;
 
 	/**
-	 * crea un personaje de raza "elfo" con nombre y casta enviados por
+	 * crea un personaje de raza "Guerrero" con nombre y casta enviados por
 	 * parametro
 	 * @param probCritico Porcentaje del golpe critico
 	 * @param evasion Porcentaje de Evasion

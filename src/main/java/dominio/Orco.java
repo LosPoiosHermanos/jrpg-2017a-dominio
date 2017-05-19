@@ -12,7 +12,7 @@ public class Orco extends Personaje {
 	private static final int ENERGIAEXTRA = 5;
 	private static final int SALUDEXTRA = 10;
   /**
-  * crea un personaje de raza "orco" con nombre y casta enviados por parametro
+  * crea un personaje de raza "Orco" con nombre y casta enviados por parametro
   * @param nombre Nombre del Personaje
   * @param casta Clase Casta
   * @param id ID del personaje
@@ -20,7 +20,7 @@ public class Orco extends Personaje {
   public Orco(final String nombre, final Casta casta, final int id) {
     super(nombre, casta, id);
     saludTope += SALUDEXTRA;
-    salud = saludTope;
+    this.setSalud(saludTope);
     energia = energiaTope;
     nombreRaza = "Orco";
     habilidadesRaza = new String[CANTIDADHABILIDADES];

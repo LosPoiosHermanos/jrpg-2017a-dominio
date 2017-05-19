@@ -22,7 +22,7 @@ public class Elfo extends Personaje {
 	public Elfo(final String nombre, final Casta casta, final int id) {
 		super(nombre, casta, id);
 		energiaTope += ENERGIAEXTRA;
-		salud = saludTope;
+		this.setSalud(saludTope);
 		energia = energiaTope;
 		nombreRaza = "Elfo";
 		habilidadesRaza = new String[CANTIDADHABILIDADES];
