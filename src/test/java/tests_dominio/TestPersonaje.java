@@ -38,7 +38,6 @@ public class TestPersonaje {
 	public void testElfo() {
 		Elfo e = new Elfo("Nicolas", new Guerrero(), 1);
 		Assert.assertTrue(e.getSalud() == 100);
-		System.out.println(e.getEnergia());
 		Assert.assertTrue(e.getEnergia() == 110);
 		Assert.assertTrue(e.getFuerza() == 15);
 		Assert.assertTrue(e.getDestreza() == 10);

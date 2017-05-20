@@ -21,7 +21,7 @@ public abstract class Personaje extends Character implements Peleable, Serializa
 	protected int idPersonaje;
 	protected int x;
 	protected int y;
-	protected static int[] tablaDeNiveles;
+	public static int[] tablaDeNiveles;
 	protected String nombreRaza;
 	protected String nombreCasta;
 	protected String[] habilidadesRaza = new String[CANTHABILIDADESRAZA];

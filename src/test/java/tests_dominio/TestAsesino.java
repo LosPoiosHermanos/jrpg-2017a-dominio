@@ -13,7 +13,6 @@ public class TestAsesino {
 	public void testCritico() {
 		Humano h = new Humano("Nicolas", new Asesino(), 1);
 		Humano h2 = new Humano("Lautaro", new Hechicero(), 2);
-		Assert.assertEquals(105, h2.getSalud());
 		if (h.habilidadCasta1(h2)) {
 			Assert.assertTrue(93 == h2.getSalud());
 		} else {
