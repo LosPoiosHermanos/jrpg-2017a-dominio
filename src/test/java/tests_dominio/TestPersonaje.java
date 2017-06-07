@@ -7,6 +7,9 @@ import dominio.Guerrero;
 import dominio.Hechicero;
 import dominio.Humano;
 import dominio.Orco;
+
+import java.util.HashMap;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -87,19 +90,25 @@ public class TestPersonaje {
 
 	@Test
 	public void testResstEnergia() {
+		HashMap<String,Integer>mapa = new HashMap<String,Integer>();
 		Orco orq = new Orco("Hernan", new Asesino(), 3);
-		orq.setEnergia(orq.getEnergiaTope() - 10);
+		mapa.put("energia", orq.getEnergiaTope() - 10);
+		orq.actualizar(mapa);
 		orq.restablecerEnergia();
 		Assert.assertTrue(orq.getEnergia() == orq.getEnergiaTope());
 	}
 
 	@Test
 	public void testResstSalud() {
+		HashMap<String,Integer>mapa = new HashMap<String,Integer>();
 		Orco orq = new Orco("Hernan", new Asesino(), 3);
-		orq.setSalud(orq.getSaludTope() - 10);
+		mapa.put("salud", orq.getSaludTope() - 10);
+		orq.actualizar(mapa);
 		orq.restablecerSalud();
 		Assert.assertTrue(orq.getSalud() == orq.getSaludTope());
-		orq.setSaludTope(50);
+		mapa.remove("salud");
+		mapa.put("saludTope", 50);
+		orq.actualizar(mapa);
 		Assert.assertTrue(orq.getSaludTope() == 50);
 	}
 
@@ -127,21 +136,25 @@ public class TestPersonaje {
 
 	@Test
 	public void testSets() {
+		HashMap mapa = new HashMap();
+
 		Humano h = new Humano("Nicolas", new Guerrero(), 1);
-		h.setEnergiaTope(5);
-		Assert.assertTrue(5 == h.getEnergiaTope());
-		h.setNivel(5);
-		Assert.assertTrue(5 == h.getNivel());
-		h.setIdPersonaje(5);
+		mapa.put("energiaTope", 5);
+		mapa.put("nivel", 5);
+		mapa.put("experiencia", 5);
+		Casta c = new Guerrero();
+		mapa.put("casta", c);
+		mapa.put("idPersonaje", 5);
+		h.actualizar(mapa);
+		
+		Assert.assertTrue(5 == h.getEnergiaTope());	
+		Assert.assertTrue(5 == h.getNivel());	
 		Assert.assertTrue(5 == h.getIdPersonaje());
 		h.setMagia(5);
-		Assert.assertTrue(5 == h.getMagia());
-		h.setExperiencia(5);
+		Assert.assertTrue(5 == h.getMagia());	
 		Assert.assertTrue(5 == h.getExperiencia());
 		h.setNombre("julian");
-		Assert.assertEquals("julian", h.getNombre());		
-		Casta c = new Guerrero();
-		h.setCasta(c);
+		Assert.assertEquals("julian", h.getNombre());			
 		Assert.assertTrue(h.getCasta().getNombreCasta() == c.getNombreCasta());
 		Assert.assertTrue(h.getX() == 0);
 		Assert.assertTrue(h.getY() == 0);

@@ -3,6 +3,9 @@ package tests_dominio;
 import dominio.Guerrero;
 import dominio.Humano;
 import dominio.Personaje;
+
+import java.util.HashMap;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -28,10 +31,12 @@ public class TestAsignarPuntos {
 
 	@Test
 	public void testMasDe200Puntos() {
+		HashMap <String,Integer> mapa = new HashMap<String,Integer>();
 		Humano h = new Humano("Nicolas", new Guerrero(), 1);
-		h.setFuerza(199);
-		h.setDestreza(199);
-		h.setInteligencia(199);
+		mapa.put("fuerza", 199);
+		mapa.put("destreza", 199);
+		mapa.put("inteligencia", 199);
+		h.actualizar(mapa);
 		h.asignarPuntosSkills(2, 2, 2);
 		Assert.assertTrue(h.getFuerza() == 199);
 		Assert.assertTrue(h.getDestreza() == 199);

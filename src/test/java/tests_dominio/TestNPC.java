@@ -3,6 +3,9 @@ package tests_dominio;
 import dominio.MyRandomStub;
 import dominio.NonPlayableCharacter;
 import dominio.Peleable;
+
+import java.util.HashMap;
+
 import org.junit.Assert;
 import org.junit.Test;
 

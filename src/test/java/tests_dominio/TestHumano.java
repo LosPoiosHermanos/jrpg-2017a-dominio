@@ -6,6 +6,8 @@ import dominio.Hechicero;
 import dominio.Humano;
 import dominio.MyRandomStub;
 
+import java.util.HashMap;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -23,10 +25,12 @@ public class TestHumano {
 
 	@Test
 	public void testGolpeFatal() {
+		HashMap <String,Integer> mapa = new HashMap<String,Integer>();
 		Humano h = new Humano("Nico", 100, 100, 55, 20, 30, new Hechicero(0.2, 0.3, 1.5), 0, 1, 1);
 		Elfo e = new Elfo("Nico", 100, 100, 25, 20, 30, new Asesino(0.2, 0.3, 1.5), 0, 3, 1);
 		Humano h2 = new Humano("Nico", 100, 100, 55, 20, 30, new Hechicero(0.2, 0.3, 1.5), 0, 1, 1);
-		h2.setEnergia(5);
+		mapa.put("energia", 5);
+		h2.actualizar(mapa);
 		Assert.assertTrue(h.getEnergia() == 100);
 		Assert.assertTrue(e.getSalud() == 100);
 		if (h.habilidadRaza2(e, new MyRandomStub(0))) {
