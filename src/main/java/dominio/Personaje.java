@@ -772,43 +772,43 @@ public abstract class Personaje extends Character implements Peleable, Serializa
 		inteligencia += aumento;
 	}
 	
-	public void actualizar(HashMap<String, Integer> mapa){
+	public void actualizar(HashMap<String, ?> mapa){
 		
 		if(mapa.containsKey("salud"))
-		this.salud= mapa.get("salud");
+		this.salud= (Integer) mapa.get("salud");
 		
 		if(mapa.containsKey("energia"))
-		this.energia= mapa.get("energia");
+		this.energia= (Integer)mapa.get("energia");
 		
-		/*if(mapa.containsKey("casta"))
-			this.casta=(Casta) mapa.get("casta");*/
+		if(mapa.containsKey("casta"))
+			this.casta= (Casta)mapa.get("casta");
 		
 		if(mapa.containsKey("defensa"))
-			this.defensa= mapa.get("defensa");
+			this.defensa= (Integer)mapa.get("defensa");
 		
 		if(mapa.containsKey("destreza"))
-			this.destreza= mapa.get("destreza");
+			this.destreza= (Integer)mapa.get("destreza");
 		
 		if(mapa.containsKey("energiaTope"))
-			this.energiaTope= mapa.get("energiaTope");
+			this.energiaTope= (Integer)mapa.get("energiaTope");
 		
 		if(mapa.containsKey("experiencia"))
-			this.experiencia= mapa.get("experiencia");
+			this.experiencia= (Integer)mapa.get("experiencia");
 		
 		if(mapa.containsKey("fuerza"))
-			this.fuerza= mapa.get("fuerza");
+			this.fuerza= (Integer)mapa.get("fuerza");
 		
 		if(mapa.containsKey("idPersonaje"))
-			this.idPersonaje= mapa.get("idPersonaje");
+			this.idPersonaje= (Integer)mapa.get("idPersonaje");
 		
 		if(mapa.containsKey("inteligencia"))
-			this.inteligencia= mapa.get("inteligencia");
+			this.inteligencia= (Integer)mapa.get("inteligencia");
 		
 		if(mapa.containsKey("nivel"))
-			this.nivel= mapa.get("nivel");
+			this.nivel= (Integer)mapa.get("nivel");
 		
 		if(mapa.containsKey("saludTope"))
-			this.saludTope= mapa.get("saludTope");
+			this.saludTope= (Integer)mapa.get("saludTope");
 		
 	}
 }
