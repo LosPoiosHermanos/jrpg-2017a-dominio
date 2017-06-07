@@ -5,8 +5,6 @@ jdk:
   - openjdk7
 
 before_script:
-- chmod a+x gradlew
-- chmod +x gradle/wrapper/gradle-wrapper.jar
-- git add -f gradle/wrapper/gradle-wrapper.jar
+- chmod +x gradlew
 
-sccript: ./gradlew build
+script: ./gradlew build
