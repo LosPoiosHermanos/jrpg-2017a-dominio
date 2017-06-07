@@ -1,5 +1,7 @@
 package dominio;
 
+import java.util.HashMap;
+
 /**
  * Una de las posibles razas de personajes que el jugador puede elegir La cual
  * posee sus propias habilidades
@@ -51,7 +53,13 @@ public class Elfo extends Personaje {
 	 */
 	public boolean habilidadRaza1(final Peleable atacado, final RandomGenerator random) {
 		if (this.getEnergia() > ENERGIAMINIMA) {
-			this.setEnergia(this.getEnergia() - ENERGIAMINIMA);
+			
+			
+			HashMap<String,Integer>mapa = new HashMap<String,Integer>();
+			mapa.put("salud", this.getSalud());
+			mapa.put("energia", this.getEnergia() - ENERGIAMINIMA);
+			this.actualizar(mapa);
+			
 			if (atacado.serAtacado(this.getFuerza() + this.getNivel() * DANIOPORNIVEL, random) > 0) {
 				return true;
 			}
@@ -68,7 +76,13 @@ public class Elfo extends Personaje {
 	 */
 	public boolean habilidadRaza2(final Peleable atacado, final RandomGenerator random) {
 		if (this.getEnergia() > ENERGIAMINIMA) {
-			this.setEnergia(this.getEnergia() - ENERGIAMINIMA);
+			
+			HashMap<String,Integer>mapa = new HashMap<String,Integer>();
+			mapa.put("salud", this.getSalud());
+			mapa.put("energia", this.getEnergia() - ENERGIAMINIMA);
+			this.actualizar(mapa);
+			
+	
 			if (atacado.serAtacado((int) (this.magia), random) > 0) {
 				return true;
 			}

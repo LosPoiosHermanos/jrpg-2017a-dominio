@@ -1,5 +1,7 @@
 package dominio;
 
+import java.util.HashMap;
+
 /**
  * Una de las posibles razas de personajes que el jugador puede elegir La cual
  * posee sus propias habilidades
@@ -44,8 +46,10 @@ public class Orco extends Personaje {
 	 * @return true Si se puede utilizar la habilidad del Golpe Defensa
 	 */
 	public boolean habilidadRaza1(final Peleable atacado, final RandomGenerator random) {
+		HashMap<String,Integer> mapa = new HashMap<String,Integer>();
 		if (this.getEnergia() > ENERGIAMINIMA) {
-			this.setEnergia(this.getEnergia() - ENERGIAMINIMA);
+			mapa.put("energia", this.getEnergia() - ENERGIAMINIMA);
+			this.actualizar(mapa);
 			if (atacado.serAtacado(this.getDefensa() * 2, random) > 0) {
 				return true;
 			}
@@ -61,8 +65,10 @@ public class Orco extends Personaje {
 	 * @return true Si se puede utilizar la habilidad del Mordisco de vida
 	 */
 	public boolean habilidadRaza2(final Peleable atacado, final RandomGenerator random) {
+		HashMap<String,Integer> mapa = new HashMap<String,Integer>();
 		if (this.getEnergia() > ENERGIAMINIMA) {
-			this.setEnergia(this.getEnergia() - ENERGIAMINIMA);
+			mapa.put("energia", this.getEnergia() - ENERGIAMINIMA);
+			this.actualizar(mapa);
 			int danioCausado = atacado.serAtacado(this.getFuerza(), random);
 			if (danioCausado > 0) {
 				this.serCurado(danioCausado);

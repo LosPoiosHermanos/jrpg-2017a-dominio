@@ -1,5 +1,7 @@
 package dominio;
 
+import java.util.HashMap;
+
 /**
  * Tipo de personaje que puede tener un jugador, con habilidades propias de
  * dicha casta para un Guerrero.
@@ -39,7 +41,12 @@ public class Guerrero extends Casta {
 	 */
 	public boolean habilidad1(final Personaje caster, final Peleable atacado) {
 		if (caster.getEnergia() > ENERGIAMINIMA) {
-			caster.setEnergia(caster.getEnergia() - ENERGIAMINIMA);
+			
+			HashMap<String,Integer>mapa = new HashMap<String,Integer>();
+			mapa.put("salud", caster.getSalud());
+			mapa.put("energia", caster.getEnergia() - ENERGIAMINIMA);
+			caster.actualizar(mapa);
+			
 			if (atacado.serAtacado(caster.ataque * 2, new MyRandom()) > 0) {
 				return true;
 			}
@@ -56,8 +63,13 @@ public class Guerrero extends Casta {
 	 */
 	public boolean habilidad2(final Personaje caster, final Peleable atacado) {
 		if (caster.getEnergia() > ENERGIAMINIMA) {
-			caster.setEnergia(caster.getEnergia() - ENERGIAMINIMA);
-			caster.setDefensa(caster.getDefensa() + caster.magia);
+			
+			HashMap<String,Integer>mapa = new HashMap<String,Integer>();
+			mapa.put("energia", caster.getEnergia() - ENERGIAMINIMA);
+			mapa.put("defensa",caster.getDefensa() + caster.magia);
+		
+			caster.actualizar(mapa);
+			
 			return true;
 		}
 		return false;
@@ -72,12 +84,24 @@ public class Guerrero extends Casta {
 	 */
 	public boolean habilidad3(final Personaje caster, final Peleable atacado) {
 		if (caster.getEnergia() > ENERGIAMINIMA) {
-			caster.setEnergia(caster.getEnergia() - ENERGIAMINIMA);
+			
+			HashMap<String,Integer>mapa = new HashMap<String,Integer>();
+						
+			mapa.put("energia", caster.getEnergia() - ENERGIAMINIMA);
+			caster.actualizar(mapa);
+			
 			if (!atacado.isNPC()) {
+				
 				int defensaOriginal = ((Personaje) atacado).getDefensa();
-				((Personaje) atacado).setDefensa(0);
+				mapa.put("defensa", 0);
+				
+				((Personaje) atacado).actualizar(mapa);
+				
 				if (atacado.serAtacado(caster.ataque, new MyRandom()) > 0) {
-					((Personaje) atacado).setDefensa(defensaOriginal);
+					mapa.remove("defensa");
+					mapa.put("defensa", defensaOriginal);
+					mapa.remove("energia");
+					((Personaje) atacado).actualizar(mapa);
 					return true;
 				}
 			}

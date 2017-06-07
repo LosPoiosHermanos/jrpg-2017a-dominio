@@ -1,5 +1,7 @@
 package dominio;
 
+import java.util.HashMap;
+
 /**
  * Tipo de personaje que puede tener un jugador, con habilidades propias de
  * dicha casta para un hechicero.
@@ -36,8 +38,12 @@ public class Hechicero extends Casta {
 	 * @return true Si se pudo realizar la habilidad
 	 */
 	public boolean habilidad1(final Personaje caster, final Peleable atacado) {
+		
+		HashMap<String,Integer> mapa= new HashMap<String,Integer>();
+		
 		if (caster.getEnergia() > ENERGIAMINIMA) {
-			caster.setEnergia(caster.getEnergia() - ENERGIAMINIMA);
+			mapa.put("energia", caster.getEnergia() - ENERGIAMINIMA);
+			caster.actualizar(mapa);
 			if (atacado.serAtacado((int) (caster.calcularPuntosDeMagia() * DANIOPORPUNTOSDEMAGIA),
 			new MyRandom()) > 0) {
 				return true;
@@ -54,8 +60,13 @@ public class Hechicero extends Casta {
 	 * @return true Si se pudo realizar la habilidad
 	 */
 	public boolean habilidad2(final Personaje caster, final Peleable aliado) {
+		
+		HashMap<String,Integer> mapa= new HashMap<String,Integer>();
+		
 		if (caster.getEnergia() > ENERGIAMINIMA) {
-			caster.setEnergia(caster.getEnergia() - ENERGIAMINIMA);
+			
+			mapa.put("energia", caster.getEnergia() - ENERGIAMINIMA);
+			caster.actualizar(mapa);
 			aliado.serCurado(caster.calcularPuntosDeMagia());
 			return true;
 		}
@@ -70,8 +81,13 @@ public class Hechicero extends Casta {
 	 * @return true Si se pudo realizar la habilidad
 	 */
 	public boolean habilidad3(final Personaje caster, final Peleable atacado) {
+		
+		HashMap<String,Integer> mapa= new HashMap<String,Integer>();
+		
 		if (caster.getEnergia() > ENERGIAMINIMA) {
-			caster.setEnergia(caster.getEnergia() - ENERGIAMINIMA);
+			mapa.put("energia", caster.getEnergia() - ENERGIAMINIMA);
+			caster.actualizar(mapa);
+			
 			if (!atacado.isNPC()) {
 				int energiaRobada =	((Personaje)
 						atacado).serDesernegizado(caster.calcularPuntosDeMagia());

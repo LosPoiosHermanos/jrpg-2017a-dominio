@@ -5,11 +5,11 @@ package dominio;
  */
 public abstract class Character {
 
-	private int salud;
-	private int fuerza;
-	private int defensa;
+	protected int salud;
+	protected int fuerza;
+	protected int defensa;
 	private String nombre;
-	private int nivel;
+	protected int nivel;
 	/**
 	 * Crea la casta "Character" con valores enviados por parametro
 	 * @param salud Cantidad de salud

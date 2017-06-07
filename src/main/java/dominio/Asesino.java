@@ -1,5 +1,7 @@
 package dominio;
 
+import java.util.HashMap;
+
 /**
  * Tipo de personaje que puede tener un jugador, con habilidades propias de
  * dicha casta para un asesino.
@@ -37,7 +39,12 @@ public class Asesino extends Casta {
 	 */
 	public boolean habilidad1(final Personaje caster, final Peleable atacado) {
 		if (caster.getEnergia() > ENERGIAMINIMA) {
-			caster.setEnergia(caster.getEnergia() - ENERGIAMINIMA);
+			
+			HashMap<String,Integer>mapa = new HashMap<String,Integer>();
+			mapa.put("salud", caster.getSalud());
+			mapa.put("energia", caster.getEnergia() - ENERGIAMINIMA);
+			caster.actualizar(mapa);
+			
 			if (atacado.serAtacado((int) (caster.ataque * caster.getCasta().getDañoCritico()),
 					new MyRandom()) > 0) {
 				return true;
@@ -56,7 +63,12 @@ public class Asesino extends Casta {
 
 	public boolean habilidad2(final Personaje caster, final Peleable atacado) {
 		if (caster.getEnergia() > ENERGIAMINIMA) {
-			caster.setEnergia(caster.getEnergia() - ENERGIAMINIMA);
+			
+			HashMap<String,Integer>mapa = new HashMap<String,Integer>();
+			mapa.put("salud", caster.getSalud());
+			mapa.put("energia", caster.getEnergia() - ENERGIAMINIMA);
+			caster.actualizar(mapa);
+			
 			if (this.getProbabilidadEvitarDaño() + AUMENTOEVASION < EVITARDANIO) {
 				this.probabilidadEvitarDaño += AUMENTOEVASION;
 			} else {

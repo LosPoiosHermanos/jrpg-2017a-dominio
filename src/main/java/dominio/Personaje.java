@@ -1,10 +1,12 @@
 package dominio;
 
 import java.io.Serializable;
+import java.util.HashMap;
 
 /**
  * establece el personaje usado por el jugador, con su nombre, alianza,
  * habilidades y atributos
+ * @param <PaqueteAtacar>
  *
  */
 
@@ -50,6 +52,7 @@ public abstract class Personaje extends Character implements Peleable, Serializa
 	protected static final int ENERGIAEXTRAPORNIVEL = 20;
 	protected static final int CANTHABILIDADESRAZA = 2;
 	protected static final int CANTHABILIDADESCASTA = 3;
+
 	/**
 	 * Devuelve las habilidades de la casta
 	 * @return String[]
@@ -203,9 +206,9 @@ public abstract class Personaje extends Character implements Peleable, Serializa
 	 * Establece un valor para el atributo "energia"
 	 * @param energia Valor de la energia
 	 */
-	public void setEnergia(final int energia) {
+	/*public void setEnergia(final int energia) {
 		this.energia = energia;
-	}
+	}*/
 	/**
 	 * Devuelve el valor del atributo "destreza"
 	 * @return int Valor de la destreza
@@ -218,9 +221,9 @@ public abstract class Personaje extends Character implements Peleable, Serializa
 	 * Establece un valor para el atributo "destreza"
 	 * @param destreza Valor de la destreza
 	 */
-	public void setDestreza(final int destreza) {
+	/*public void setDestreza(final int destreza) {
 		this.destreza = destreza;
-	}
+	}*/
 
 	/**
 	 * Devuelve el valor del atributo "inteligencia"
@@ -234,9 +237,9 @@ public abstract class Personaje extends Character implements Peleable, Serializa
 	 * Establece un valor para el atributo "inteligencia"
 	 * @param inteligencia Valor de la inteligencia
 	 */
-	public void setInteligencia(final int inteligencia) {
+	/*public void setInteligencia(final int inteligencia) {
 		this.inteligencia = inteligencia;
-	}
+	}*/
 
 	/**
 	 * Devuelve el valor del atributo "casta"
@@ -250,9 +253,9 @@ public abstract class Personaje extends Character implements Peleable, Serializa
 	 * Establece un valor para el atributo "casta"
 	 * @param casta Valor de la Casta
 	 */
-	public void setCasta(final Casta casta) {
+	/*public void setCasta(final Casta casta) {
 		this.casta = casta;
-	}
+	}*/
 
 	/**
 	 * Devuelve el valor del atributo "experiencia"
@@ -266,10 +269,10 @@ public abstract class Personaje extends Character implements Peleable, Serializa
 	 * Establece un valor para el atributo "experiencia"
 	 * @param experiencia Valor de la experiencia
 	 */
-	public void setExperiencia(final int experiencia) {
+	/*public void setExperiencia(final int experiencia) {
 		this.experiencia = experiencia;
 	}
-
+*/
 	/**
 	 * Devuelve el valor del atributo "idPersonaje"
 	 * @return int ID unica del Personaje
@@ -282,9 +285,9 @@ public abstract class Personaje extends Character implements Peleable, Serializa
 	 * Establece un valor para el atributo "idPersonaje"
 	 * @param idPersonaje ID unica del Personaje
 	 */
-	public void setIdPersonaje(final int idPersonaje) {
+	/*public void setIdPersonaje(final int idPersonaje) {
 		this.idPersonaje = idPersonaje;
-	}
+	}*/
 	/**
 	 * Devuelve el valor del atributo "saludTope"
 	 * @return int Valor de la Salud al tope
@@ -297,9 +300,9 @@ public abstract class Personaje extends Character implements Peleable, Serializa
 	 * Establece un valor para el atributo "saludTope"
 	 * @param saludTope Valor de la Salud al tope
 	 */
-	public void setSaludTope(final int saludTope) {
+	/*public void setSaludTope(final int saludTope) {
 		this.saludTope = saludTope;
-	}
+	}*/
 
 	/**
 	 * Devuelve el valor del atributo "energiaTope"
@@ -313,9 +316,9 @@ public abstract class Personaje extends Character implements Peleable, Serializa
 	 * Establece un valor para el atributo "energiaTope"
 	 * @param energiaTope Valor de la Energia al tope
 	 */
-	public void setEnergiaTope(final int energiaTope) {
+/*	public void setEnergiaTope(final int energiaTope) {
 		this.energiaTope = energiaTope;
-	}
+	}*/
 
 	/**
 	 * Permite un ataque de un personaje a otro, estableciendo condiciones para
@@ -767,5 +770,45 @@ public abstract class Personaje extends Character implements Peleable, Serializa
 	 */
 	public final void aumentarInteligencia(final int aumento) {
 		inteligencia += aumento;
+	}
+	
+	public void actualizar(HashMap<String, ?> mapa){
+		
+		if(mapa.containsKey("salud"))
+		this.salud=(int) mapa.get("salud");
+		
+		if(mapa.containsKey("energia"))
+		this.energia=(int) mapa.get("energia");
+		
+		if(mapa.containsKey("casta"))
+			this.casta=(Casta) mapa.get("casta");
+		
+		if(mapa.containsKey("defensa"))
+			this.defensa=(int) mapa.get("defensa");
+		
+		if(mapa.containsKey("destreza"))
+			this.destreza=(int) mapa.get("destreza");
+		
+		if(mapa.containsKey("energiaTope"))
+			this.energiaTope=(int) mapa.get("energiaTope");
+		
+		if(mapa.containsKey("experiencia"))
+			this.experiencia=(int) mapa.get("experiencia");
+		
+		if(mapa.containsKey("fuerza"))
+			this.fuerza=(int) mapa.get("fuerza");
+		
+		if(mapa.containsKey("idPersonaje"))
+			this.idPersonaje=(int) mapa.get("idPersonaje");
+		
+		if(mapa.containsKey("inteligencia"))
+			this.inteligencia=(int) mapa.get("inteligencia");
+		
+		if(mapa.containsKey("nivel"))
+			this.nivel=(int) mapa.get("nivel");
+		
+		if(mapa.containsKey("saludTope"))
+			this.saludTope=(int) mapa.get("saludTope");
+		
 	}
 }
