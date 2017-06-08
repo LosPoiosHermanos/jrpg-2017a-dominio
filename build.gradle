@@ -89,12 +89,22 @@ findbugs {
     ignoreFailures = true
 }
 
+task fatJar(type: Jar) {
+	manifest { 
+    	attributes "Main-Class": "servidor.Servidor"
+  	}
+
+    baseName = project.name
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    
+    with jar
+}
 
 jacocoTestReport {
     reports {
         xml.enabled false
         csv.enabled true
-        html.enabled false
+        html.enabled true
         //html.destination "${buildDir}/jacocoHtml"
     }
 }
