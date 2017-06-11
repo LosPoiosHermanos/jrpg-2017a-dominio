@@ -56,7 +56,7 @@ public class TestObjeto {
 		Humano h = new Humano("Nico", 100, 100, 100, 20, 30, new Guerrero(0.2, 0.3, 1.5), 0, 1, 1);
 		
 		System.out.println("antes:");
-		System.out.println("fuerza: "+h.getFuerza() + " defensa: "+ h.getDefensa()+ " salud: "+ h.getSalud());
+		System.out.println("fuerza: "+h.getFuerza() + " defensa: "+ h.getDefensa()+ " salud tope: "+ h.getSaludTope());
 		
 		h.ganarObjeto();
 		
@@ -65,7 +65,7 @@ public class TestObjeto {
 		h.VerInventario();
 			
 			System.out.println("despues:");
-			System.out.println("fuerza: "+h.getFuerza() + " defensa: "+ h.getDefensa()+ " salud: "+ h.getSalud());		
+			System.out.println("fuerza: "+h.getFuerza() + " defensa: "+ h.getDefensa()+ " salud tope: "+ h.getSaludTope());		
 			
 	}
 	
