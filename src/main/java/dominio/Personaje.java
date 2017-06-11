@@ -328,18 +328,57 @@ public abstract class Personaje extends Character implements Peleable, Serializa
 	 * @return int Devuelve el danio
 	 */
 	public int atacar(final Peleable atacado, final RandomGenerator random) {
+		
+		int daño;
 		if (this.getSalud() == 0) {
 			return 0;
 		}
+		
 		if (atacado.getSalud() > 0) {
 			if (random.nextDouble() <= this.casta.getProbabilidadGolpeCritico()
 					+ this.destreza / DIVISORDEDESTREZA) {
-				return atacado.serAtacado(this.golpe_critico(), random);
+				daño= atacado.serAtacado(this.golpe_critico(), random);	
 			} else {
-				return atacado.serAtacado(this.ataque, random);
+				daño= atacado.serAtacado(this.ataque, random);
 			}
+			if(atacado.estaVivo()==false)
+				this.ganarObjeto();
+			
+			return daño;
 		}
-		return 0;
+			
+			return 0;
+	}
+	
+
+	public void ganarObjeto() {
+		
+		HashMap<String,Integer> mapa = new HashMap<String,Integer>();
+		
+		MyRandom rand = new MyRandom();
+		int aleatorio= rand.nextInt(6);
+		Objeto obj;
+		
+		if(aleatorio == 0){
+			obj= new Guantes();
+			inventario.añadir(obj);
+			mapa.put("salud", this.getSalud() + (this.getSalud()*obj.getAtributo())/100);
+			
+		}
+		
+		if(aleatorio>0 && aleatorio<3){
+			obj = new Arma();
+			inventario.añadir(obj);
+			mapa.put("fuerza", this.getFuerza() + (this.getFuerza()*obj.getAtributo())/100);
+		}
+		
+		if (aleatorio>=3 && aleatorio<6){
+			obj= new Armadura();
+			inventario.añadir(obj);
+			mapa.put("defensa", this.getDefensa() + (this.getDefensa()*obj.getAtributo())/100);
+		}
+		this.actualizar(mapa);
+		
 	}
 
 	/**
@@ -810,5 +849,9 @@ public abstract class Personaje extends Character implements Peleable, Serializa
 		if(mapa.containsKey("saludTope"))
 			this.saludTope= (Integer)mapa.get("saludTope");
 		
+	}
+	
+	public void VerInventario(){
+		inventario.ver();
 	}
 }

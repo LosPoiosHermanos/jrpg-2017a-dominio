@@ -10,6 +10,7 @@ public abstract class Character {
 	protected int defensa;
 	private String nombre;
 	protected int nivel;
+	protected Inventario inventario;
 	/**
 	 * Crea la casta "Character" con valores enviados por parametro
 	 * @param salud Cantidad de salud
@@ -24,6 +25,7 @@ public abstract class Character {
 		this.defensa = defensa;
 		this.nombre = nombre;
 		this.nivel = nivel;
+		inventario = new Inventario();
 	}
 
 	/**
@@ -153,6 +155,7 @@ public abstract class Character {
 	 * Que pasa despues del turno
 	 */
 	public void despuesDeTurno() {
+		
 	}
 
 }
