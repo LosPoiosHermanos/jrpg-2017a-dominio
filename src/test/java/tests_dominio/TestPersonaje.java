@@ -136,7 +136,7 @@ public class TestPersonaje {
 
 	@Test
 	public void testSets() {
-		HashMap mapa = new HashMap();
+		HashMap<String, Object> mapa = new HashMap<String,Object>();
 
 		Humano h = new Humano("Nicolas", new Guerrero(), 1);
 		mapa.put("energiaTope", 5);
