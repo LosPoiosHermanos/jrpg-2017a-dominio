@@ -4,6 +4,6 @@ public class Guantes extends Objeto{
 	
 	public Guantes(){
 		nombre= "Guantes";
-		atributoModificado= "salud";
+		atributoModificado= "saludTope";
 	}
 }
