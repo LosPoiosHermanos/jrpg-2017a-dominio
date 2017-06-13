@@ -16,6 +16,10 @@ public class Inventario {
 		
 		objetos.add(obj);
 	}
+	public ArrayList<Objeto> clone() {
+		ArrayList<Objeto> obj = objetos;
+		return obj;
+	}
 	
 	public void ver(){
 		
