@@ -1,6 +1,6 @@
 package dominio;
 
-public abstract class Objeto {
+public class Objeto {
 
 	protected String nombre;
 	protected int atributo;

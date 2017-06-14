@@ -359,24 +359,12 @@ public abstract class Personaje extends Character implements Peleable, Serializa
 		int aleatorio= rand.nextInt(6);
 		Objeto obj;
 		
-		if(aleatorio == 0){
-			obj= new Guantes();
-			inventario.añadir(obj);
-			mapa.put("saludTope", this.getSaludTope() + (this.getSaludTope()*obj.getAtributo())/100);
+		//revisar
+		obj= new Objeto();
+		inventario.añadir(obj);
+		mapa.put("saludTope", this.getSaludTope() + (this.getSaludTope()*obj.getAtributo())/100);
 			
-		}
-		
-		if(aleatorio>0 && aleatorio<3){
-			obj = new Arma();
-			inventario.añadir(obj);
-			mapa.put("fuerza", this.getFuerza() + (this.getFuerza()*obj.getAtributo())/100);
-		}
-		
-		if (aleatorio>=3 && aleatorio<6){
-			obj= new Armadura();
-			inventario.añadir(obj);
-			mapa.put("defensa", this.getDefensa() + (this.getDefensa()*obj.getAtributo())/100);
-		}
+
 		this.actualizar(mapa);
 		
 	}
