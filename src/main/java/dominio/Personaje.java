@@ -361,7 +361,7 @@ public abstract class Personaje extends Character implements Peleable, Serializa
 		
 		//revisar
 		obj= new Objeto();
-		inventario.añadir(obj);
+		inventario.agregar(obj);
 		mapa.put("saludTope", this.getSaludTope() + (this.getSaludTope()*obj.getAtributo())/100);
 			
 

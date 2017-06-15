@@ -12,7 +12,7 @@ public class Inventario {
 		objetos = new ArrayList<Objeto>();
 	}
 	
-	public void añadir(Objeto obj){
+	public void agregar(Objeto obj){
 		
 		objetos.add(obj);
 	}
