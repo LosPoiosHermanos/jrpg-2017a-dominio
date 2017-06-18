@@ -32,5 +32,9 @@ public class MyRandomStub extends RandomGenerator {
 	public double nextDouble() {
 		return valorDouble;
 	}
+	@Override
+	public int getInt() {
+		return this.valorINT;
+	}
 
 }

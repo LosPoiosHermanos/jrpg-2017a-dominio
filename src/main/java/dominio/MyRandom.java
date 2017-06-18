@@ -25,4 +25,9 @@ public class MyRandom extends RandomGenerator {
 	public int nextInt(final int max) {
 		return new Random().nextInt(max);
 	}
+	
+	@Override
+	public int getInt() {
+		return 0;
+	}
 }

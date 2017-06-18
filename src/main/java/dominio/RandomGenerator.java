@@ -18,4 +18,6 @@ public abstract class RandomGenerator {
 	 * @return double Valor aleatorio del tipo double
 	 */
 	public abstract double nextDouble();
+
+	public abstract int getInt();
 }

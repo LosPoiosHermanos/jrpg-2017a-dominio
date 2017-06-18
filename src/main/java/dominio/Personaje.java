@@ -355,18 +355,22 @@ public abstract class Personaje extends Character implements Peleable, Serializa
 		
 		HashMap<String,Integer> mapa = new HashMap<String,Integer>();
 		
-		MyRandom rand = new MyRandom();
-		int aleatorio= rand.nextInt(6);
-		Objeto obj;
-		
-		//revisar
-		obj= new Objeto();
+		Objeto obj= new Objeto(new MyRandomStub(2));
 		inventario.agregar(obj);
-		mapa.put("saludTope", this.getSaludTope() + (this.getSaludTope()*obj.getAtributo())/100);
-			
-
+		switch (obj.atributoModificado) {
+		case "saludTope":
+			mapa.put(obj.atributoModificado, this.getSaludTope() + obj.getAtributo());
+			break;
+		case "destreza":
+			mapa.put(obj.atributoModificado, this.getDestreza() + obj.getAtributo());
+			break;
+		case "fuerza":
+			mapa.put(obj.atributoModificado, this.getFuerza() + obj.getAtributo());
+			break;
+		default:
+			break;
+		}
 		this.actualizar(mapa);
-		
 	}
 
 	/**
@@ -841,5 +845,9 @@ public abstract class Personaje extends Character implements Peleable, Serializa
 	
 	public void VerInventario(){
 		inventario.ver();
+	}
+	
+	public Inventario getInventario(){
+		return this.inventario;
 	}
 }
