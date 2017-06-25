@@ -17,12 +17,12 @@ public class TestObjeto {
 
 	@Test
 	public void testAsignarObjeto(){
-		Objeto obj = new Objeto(new MyRandomStub(1));
+		Objeto obj = new Objeto(1);
 		Assert.assertEquals("fuerza", obj.getAtributoModificado());
-		Objeto obj2 = new Objeto(new MyRandomStub(2));
+		Objeto obj2 = new Objeto(2);
 		Assert.assertEquals("saludTope", obj2.getAtributoModificado());
 		
-		Objeto obj3 = new Objeto(new MyRandomStub(3));
+		Objeto obj3 = new Objeto(2);
 		Assert.assertEquals("destreza", obj3.getAtributoModificado());
 		
 		

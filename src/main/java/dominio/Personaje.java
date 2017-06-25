@@ -1,6 +1,7 @@
 package dominio;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -351,26 +352,28 @@ public abstract class Personaje extends Character implements Peleable, Serializa
 	}
 	
 
-	public void ganarObjeto() {
+	public Objeto ganarObjeto() {
 		
 		HashMap<String,Integer> mapa = new HashMap<String,Integer>();
 		
-		Objeto obj= new Objeto(new MyRandomStub(2));
-		inventario.agregar(obj);
+		Objeto obj = inventario.agregarObjeto();
+//		Objeto obj= new Objeto(2); para test
+		
 		switch (obj.atributoModificado) {
-		case "saludTope":
-			mapa.put(obj.atributoModificado, this.getSaludTope() + obj.getAtributo());
-			break;
-		case "destreza":
-			mapa.put(obj.atributoModificado, this.getDestreza() + obj.getAtributo());
-			break;
-		case "fuerza":
-			mapa.put(obj.atributoModificado, this.getFuerza() + obj.getAtributo());
-			break;
-		default:
-			break;
+			case "saludTope":
+				mapa.put(obj.atributoModificado, this.getSaludTope() + obj.getAtributo());
+				break;
+			case "destreza":
+				mapa.put(obj.atributoModificado, this.getDestreza() + obj.getAtributo());
+				break;
+			case "fuerza":
+				mapa.put(obj.atributoModificado, this.getFuerza() + obj.getAtributo());
+				break;
+			default:
+				break;
 		}
 		this.actualizar(mapa);
+		return obj;
 	}
 
 	/**
@@ -804,7 +807,7 @@ public abstract class Personaje extends Character implements Peleable, Serializa
 	}
 	
 	public void actualizar(HashMap<String, ?> mapa){
-		
+		//se va actualizando durante la batalla
 		if(mapa.containsKey("salud"))
 		this.salud= (Integer) mapa.get("salud");
 		
@@ -840,14 +843,18 @@ public abstract class Personaje extends Character implements Peleable, Serializa
 		
 		if(mapa.containsKey("saludTope"))
 			this.saludTope= (Integer)mapa.get("saludTope");
-		
+
 	}
 	
-	public void VerInventario(){
-		inventario.ver();
-	}
 	
 	public Inventario getInventario(){
 		return this.inventario;
 	}
+
+	public void reestablecerInventario(int[] ids) {
+		inventario.reestablecerObjetos(ids);
+		
+	}
+
+
 }

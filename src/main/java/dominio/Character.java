@@ -1,4 +1,8 @@
 package dominio;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
 /**
  * Clase Abstracta de la cual heredan "Personaje" y "NonPlayableCharacter"
  * los atributos y funciones en comun
@@ -157,5 +161,10 @@ public abstract class Character {
 	public void despuesDeTurno() {
 		
 	}
+
+	public int[] getIdDeObjetos() {
+
+		return inventario.getIdObjetos();
+	} 
 
 }
