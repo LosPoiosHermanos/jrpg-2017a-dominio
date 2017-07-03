@@ -8,6 +8,16 @@ public class Objeto {
 	protected int atributo;
 	protected String atributoModificado;
 	protected MyRandom rand = new MyRandom();
+	protected String matrizObjetos[][] = {{"Brazalete","10","fuerza"},{"Cuchilla","10","fuerza"},
+											{"Guantes","10","fuerza"},{"Botas","10","fuerza"},
+											{"Martillo","10","fuerza"},{"Espada","10","fuerza"},
+											{"Lanza","10","fuerza"},{"Martillo","10","fuerza"},
+											{"Hacha","10","fuerza"},{"Armadura","10","fuerza"},
+											{"Boomerang","10","fuerza"},{"Anillo","10","fuerza"},
+											{"Capa","10","fuerza"},{"Sombrero","10","fuerza"},
+											{"Casco","10","fuerza"},{"Escudo","10","fuerza"},
+											{"Katana","10","fuerza"},{"Cetro","10","fuerza"},
+											{"Posion","10","fuerza"},{"Espada","10","fuerza"}};
 
 	public Objeto() {
 		id = rand.nextInt(19) + 1;
@@ -26,112 +36,13 @@ public class Objeto {
  * Los objetos dan bonus para los atributos : fuerza saludtope y destreza
  */
 	private void asignarObjeto() {
-		
-		switch (id) {
-		case 0:
-			nombre = "Brazalete";
-			atributo = 10;
-			atributoModificado = "fuerza";
-			break;
-		case 1:
-			nombre = "Cuchilla";
-			atributo = 10;
-			atributoModificado = "fuerza";
-			break;
-		case 2:
-			nombre = "Guantes";
-			atributo = 10;
-			atributoModificado = "fuerza";
-			break;
-		case 3:
-			nombre = "Botas";
-			atributo = 10;
-			atributoModificado = "fuerza";
-			break;
-		case 4:
-			nombre = "Martillo";
-			atributo = 10;
-			atributoModificado = "fuerza";
-			break;
-		case 5:
-			nombre = "Espada";
-			atributo = 10;
-			atributoModificado = "fuerza";
-			break;
-		case 6:
-			nombre = "Lanza";
-			atributo = 10;
-			atributoModificado = "fuerza";
-			break;
-		case 7:
-			nombre = "Martillo";
-			atributo = 10;
-			atributoModificado = "fuerza";
-			break;
-		case 8:
-			nombre = "Hacha";
-			atributo = 10;
-			atributoModificado = "fuerza";
-			break;
-		case 9:
-			nombre = "Armadura";
-			atributo = 10;
-			atributoModificado = "fuerza";
-			break;
-		case 10:
-			nombre = "Boomerang";
-			atributo = 10;
-			atributoModificado = "fuerza";
-			break;
-		case 11:
-			nombre = "Anillo";
-			atributo = 10;
-			atributoModificado = "fuerza";
-			break;
-		case 12:
-			nombre = "Capa";
-			atributo = 10;
-			atributoModificado = "fuerza";
-			break;
-		case 13:
-			nombre = "Sombrero";
-			atributo = 10;
-			atributoModificado = "fuerza";
-			break;
-		case 14:
-			nombre = "Casco";
-			atributo = 10;
-			atributoModificado = "fuerza";
-			break;
-		case 15:
-			nombre = "Escudo";
-			atributo = 10;
-			atributoModificado = "fuerza";
-			break;
-		case 16:
-			nombre = "Katana";
-			atributo = 10;
-			atributoModificado = "fuerza";
-			break;
-		case 17:
-			nombre = "Cetro";
-			atributo = 10;
-			atributoModificado = "fuerza";
-			break;
-		case 18:
-			nombre = "Posion";
-			atributo = 10;
-			atributoModificado = "fuerza";
-			break;
-		case 19:
-			nombre = "Espada";
-			atributo = 10;
-			atributoModificado = "fuerza";
-			break;
-		
-		default:
-			break;
+		if( id > 0 && id < matrizObjetos.length ){
+			nombre = matrizObjetos[id-1][0] ;
+			atributo = Integer.parseInt(matrizObjetos[id-1][1]); 
+			atributoModificado = matrizObjetos[id-1][2];
 		}
+		
+
 	}
 
 	public String getAtributoModificado() {
