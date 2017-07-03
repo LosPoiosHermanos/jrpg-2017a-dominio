@@ -63,10 +63,38 @@ public class Inventario implements Serializable {
 	}
 	
 	public void reestablecerObjetos(int[] ids){
-		
 		for (int j = 0; j < MAX_OBJETOS; j++) {
 			objetos.add(new Objeto(ids[j]));
 		}
+	}
+	
+	public void quitarObjeto(Objeto obj) {
+		if(objetos.contains(obj)){
+			objetos.remove(obj);
+		}
+	}
+	public int getCantidadObjetos() {
+		int i=0;
+		for (Objeto obj : objetos) {
+			if(obj.getId() > 0){ 
+				i++;
+			}	
+		}
+		return i;
+	}
+	public Objeto getObjeto(int idObjeto) {
+		for (Objeto objeto : objetos) {
+			if(objeto.getId().equals(idObjeto))
+				return new Objeto(idObjeto);
+		}
+		return null;
+	}
+	public boolean estaEnInventario(int id){
+		for (Objeto objeto : objetos) {
+			if(objeto.getId().equals(id))
+				return true;
+		}
+		return false;
 	}
 	
 }
