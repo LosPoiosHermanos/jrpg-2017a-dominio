@@ -17,7 +17,7 @@ public class TestGuerrero {
 		HashMap <String,Integer> mapa = new HashMap<String,Integer>();
 		Humano h = new Humano("Nico", 100, 100, 25, 20, 30, new Guerrero(0.2, 0.3, 1.5), 0, 1, 1);
 		Elfo e = new Elfo("Nico", 100, 100, 25, 20, 30, new Asesino(0.2, 0.3, 1.5), 0, 3, 1);
-		Assert.assertTrue(e.getSalud() == 100);
+		Assert.assertEquals(e.getSalud() , 100);
 		if (h.habilidadCasta1(e)) {
 			Assert.assertTrue(e.getSalud() < 100);
 		}
@@ -26,7 +26,7 @@ public class TestGuerrero {
 		mapa.put("energia", 5);
 		h2.actualizar(mapa);
 		if (!h2.habilidadCasta1(e2)) {
-			Assert.assertTrue(e2.getSalud() == 100);
+			Assert.assertEquals(e2.getSalud() , 100);
 		}
 	}
 
@@ -34,14 +34,14 @@ public class TestGuerrero {
 	public void testAutoDefensa() {
 		HashMap <String,Integer> mapa = new HashMap<String,Integer>();
 		Humano h = new Humano("Nico", 100, 100, 25, 20, 30, new Guerrero(0.2, 0.3, 1.5), 0, 1, 1);
-		Assert.assertTrue(h.getDefensa() == 20);
+		Assert.assertEquals(h.getDefensa() , 20);
 		h.habilidadCasta2(null);
-		Assert.assertTrue(h.getDefensa() == 65);
+		Assert.assertEquals(h.getDefensa() , 65);
 		Humano h2 = new Humano("Nico", 100, 100, 25, 20, 30, new Guerrero(0.2, 0.3, 1.5), 0, 1, 1);
 		mapa.put("energia", 1);
 		h2.actualizar(mapa);
 		h2.habilidadCasta2(null);
-		Assert.assertFalse(h2.getDefensa() == 65);
+		Assert.assertNotEquals(h2.getDefensa() , 65);
 	}
 
 	@Test
