@@ -14,7 +14,7 @@ public class TestNPC {
 	@Test
 	public void testOtorgarExp() {
 		NonPlayableCharacter npc = new NonPlayableCharacter("Gigante", 1, -1, new MyRandomStub(0));
-		Assert.assertEquals(30 , npc.otorgarExp());
+		Assert.assertTrue(30 == npc.otorgarExp());
 	}
 
 	@Test
@@ -37,18 +37,18 @@ public class TestNPC {
 		NonPlayableCharacter p1 = new NonPlayableCharacter("Fulanito", nivel, 1, new MyRandomStub(0));
 		double x = p1.getAtaque();
 		p1.setAtaque(333);
-		Assert.assertNotEquals(x , p1.getAtaque());
+		Assert.assertTrue(x != p1.getAtaque());
 		p1.setNivel(5);
-		Assert.assertEquals(5 , p1.getNivel());
+		Assert.assertTrue(5 == p1.getNivel());
 		p1.setAtaque(5);
-		Assert.assertEquals(p1.getAtaque() , 5);
+		Assert.assertTrue(p1.getAtaque() == 5);
 		p1.setDefensa(5);
-		Assert.assertEquals(p1.getDefensa() , 5);
+		Assert.assertTrue(p1.getDefensa() == 5);
 		p1.setFuerza(5);
-		Assert.assertEquals(p1.getFuerza() , 5);
+		Assert.assertTrue(p1.getFuerza() == 5);
 		p1.setSalud(5);
-		Assert.assertEquals(p1.getSalud() , 5);
+		Assert.assertTrue(p1.getSalud() == 5);
 		p1.setNombre("gabriel");
-		Assert.assertEquals(p1.getNombre() , "gabriel");
+		Assert.assertTrue(p1.getNombre() == "gabriel");
 	}
 }

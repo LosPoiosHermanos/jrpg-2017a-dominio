@@ -414,13 +414,6 @@ public abstract class Personaje extends Character implements Peleable, Serializa
 		Objeto obj = inventario.agregarObjeto();
 		// Objeto obj= new Objeto(2); para test
 
-
-		if (obj.atributoModificado.equals("defensa"))
-			mapa.put(obj.atributoModificado, this.getDefensa() + obj.getAtributo());
-		if (obj.atributoModificado.equals("inteligencia"))
-			mapa.put(obj.atributoModificado, this.getInteligencia() + obj.getAtributo());
-		if (obj.atributoModificado.equals("energiaTope"))
-			mapa.put(obj.atributoModificado, this.getEnergiaTope() + obj.getAtributo());
 		if (obj.atributoModificado.equals("saludTope"))
 			mapa.put(obj.atributoModificado, this.getSaludTope() + obj.getAtributo());
 		if (obj.atributoModificado.equals("destreza"))

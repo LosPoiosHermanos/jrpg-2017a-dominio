@@ -69,8 +69,11 @@ public class Inventario implements Serializable {
 	}
 	
 	public void quitarObjeto(Objeto obj) {
-		if(objetos.contains(obj)){
-			objetos.remove(obj);
+		for (Objeto objeto : objetos) {
+			if(objeto.getId().equals(obj.getId())){
+				objetos.remove(objeto);
+				return;
+			}
 		}
 	}
 	public int getCantidadObjetos() {

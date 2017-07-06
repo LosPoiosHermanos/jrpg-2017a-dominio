@@ -15,18 +15,18 @@ public class TestAsignarPuntos {
 	public void testAumentarSalud_tope() {
 		Personaje.cargarTablaNivel();
 		Humano h = new Humano("Nicolas", new Guerrero(), 1);
-		Assert.assertEquals(h.getSaludTope() , 105);
+		Assert.assertTrue(h.getSaludTope() == 105);
 		h.ganarExperiencia(50);
-		Assert.assertEquals(h.getSaludTope() , 130);
+		Assert.assertTrue(h.getSaludTope() == 130);
 	}
 
 	@Test
 	public void testAumentarEnergia_tope() {
 		Personaje.cargarTablaNivel();
 		Humano h = new Humano("Nicolas", new Guerrero(), 1);
-		Assert.assertEquals(h.getEnergiaTope() , 105);
+		Assert.assertTrue(h.getEnergiaTope() == 105);
 		h.ganarExperiencia(50);
-		Assert.assertEquals(h.getEnergiaTope() , 125);
+		Assert.assertTrue(h.getEnergiaTope() == 125);
 	}
 
 	@Test
@@ -38,8 +38,8 @@ public class TestAsignarPuntos {
 		mapa.put("inteligencia", 199);
 		h.actualizar(mapa);
 		h.asignarPuntosSkills(2, 2, 2);
-		Assert.assertEquals(h.getFuerza() , 199);
-		Assert.assertEquals(h.getDestreza() , 199);
-		Assert.assertEquals(h.getInteligencia() , 199);
+		Assert.assertTrue(h.getFuerza() == 199);
+		Assert.assertTrue(h.getDestreza() == 199);
+		Assert.assertTrue(h.getInteligencia() == 199);
 	}
 }
