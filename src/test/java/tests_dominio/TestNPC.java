@@ -3,9 +3,6 @@ package tests_dominio;
 import dominio.MyRandomStub;
 import dominio.NonPlayableCharacter;
 import dominio.Peleable;
-
-import java.util.HashMap;
-
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -39,7 +36,7 @@ public class TestNPC {
 		p1.setAtaque(333);
 		Assert.assertNotEquals(x , p1.getAtaque());
 		p1.setNivel(5);
-		Assert.assertEquals(5 , p1.getNivel());
+		Assert.assertEquals(5 , p1.getNivel());Assert.assertEquals(5 , p1.getNivel());
 		p1.setAtaque(5);
 		Assert.assertEquals(p1.getAtaque() , 5);
 		p1.setDefensa(5);

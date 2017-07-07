@@ -17,19 +17,18 @@ public class TestAsesino {
 		Humano h = new Humano("Nicolas", new Asesino(), 1);
 		Humano h2 = new Humano("Lautaro", new Hechicero(), 2);
 		if (h.habilidadCasta1(h2)) {
-			Assert.assertTrue(h2.getSalud()<105);
+			Humano h3 = new Humano("Nicolas", new Asesino(100, 100, 100), 1);
+			if (h3.habilidadCasta1(h))
+				Assert.assertTrue(h.getSalud() < 105);
+
+			HashMap<String, Integer> mapa = new HashMap<String, Integer>();
+			mapa.put("energia", 1);
+			h3.actualizar(mapa);
+
+			if (!h3.habilidadCasta1(h2))
+				Assert.assertEquals(1, h3.getEnergia());
 		}
-		Humano h3 = new Humano("Nicolas", new Asesino(100,100,100), 1); 
-		if(h3.habilidadCasta1(h))
-			Assert.assertTrue(h.getSalud()<105);
-			
-		HashMap<String,Integer> mapa = new HashMap<String,Integer>();
-		mapa.put("energia", 1);
-		h3.actualizar(mapa);
-		
-		if(!h3.habilidadCasta1(h2))
-			Assert.assertEquals(1, h3.getEnergia());
-		}
+	}
 
 	@Test
 	public void testProbEvasion() {
@@ -39,10 +38,10 @@ public class TestAsesino {
 		Assert.assertEquals(0.45, h.getCasta().getProbabilidadEvitarDaño(), 0.01);
 		h.habilidadCasta2(null);
 		Assert.assertTrue(0.5 == h.getCasta().getProbabilidadEvitarDaño());
-		HashMap<String,Integer> mapa = new HashMap<String,Integer>();
+		HashMap<String, Integer> mapa = new HashMap<String, Integer>();
 		mapa.put("energia", -1);
 		h.actualizar(mapa);
-		Assert.assertEquals(h.habilidadCasta2(null),false);
+		Assert.assertEquals(h.habilidadCasta2(null), false);
 	}
 
 	@Test
