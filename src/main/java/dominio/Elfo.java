@@ -9,6 +9,10 @@ import java.util.HashMap;
 
 public class Elfo extends Personaje {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static final int ENERGIAMINIMA = 10;
 	private static final int ENERGIAEXTRA = 10;
 	private static final int DANIOPORNIVEL = 10;

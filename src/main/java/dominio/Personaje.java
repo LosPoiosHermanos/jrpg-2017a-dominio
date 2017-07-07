@@ -1,7 +1,6 @@
 package dominio;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -14,6 +13,10 @@ import java.util.HashMap;
 
 public abstract class Personaje extends Character implements Peleable, Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected int energia;
 	protected int ataque;
 	protected int magia;
@@ -414,38 +417,37 @@ public abstract class Personaje extends Character implements Peleable, Serializa
 		Objeto obj = inventario.agregarObjeto();
 		// Objeto obj= new Objeto(2); para test
 
-
-		if (obj.atributoModificado.equals("defensa"))
-			mapa.put(obj.atributoModificado, this.getDefensa() + obj.getAtributo());
-		if (obj.atributoModificado.equals("inteligencia"))
-			mapa.put(obj.atributoModificado, this.getInteligencia() + obj.getAtributo());
-		if (obj.atributoModificado.equals("energiaTope"))
-			mapa.put(obj.atributoModificado, this.getEnergiaTope() + obj.getAtributo());
 		if (obj.atributoModificado.equals("saludTope"))
-			mapa.put(obj.atributoModificado, this.getSaludTope() + obj.getAtributo());
+			mapa.put(obj.atributoModificado, this.getSaludTope() + obj.getValor());
 		if (obj.atributoModificado.equals("destreza"))
-			mapa.put(obj.atributoModificado, this.getDestreza() + obj.getAtributo());
+			mapa.put(obj.atributoModificado, this.getDestreza() + obj.getValor());
 		if (obj.atributoModificado.equals("fuerza"))
-			mapa.put(obj.atributoModificado, this.getFuerza() + obj.getAtributo());
+			mapa.put(obj.atributoModificado, this.getFuerza() + obj.getValor());
+		if (obj.atributoModificado.equals("defensa"))
+			mapa.put(obj.atributoModificado, this.getDefensa() + obj.getValor());
+		if (obj.atributoModificado.equals("inteligencia"))
+			mapa.put(obj.atributoModificado, this.getInteligencia() + obj.getValor());
+		if (obj.atributoModificado.equals("energiaTope"))
+			mapa.put(obj.atributoModificado, this.getEnergiaTope() + obj.getValor());
 
 		this.actualizar(mapa);
 		return obj;
 	}
-	
+
 	public void perderObjeto(Objeto obj) {
 
 		HashMap<String, Integer> mapa = new HashMap<String, Integer>();
-		
+
 		if (obj.atributoModificado.equals("saludTope"))
-			mapa.put(obj.atributoModificado, this.getSaludTope() - obj.getAtributo());
+			mapa.put(obj.atributoModificado, this.getSaludTope() - obj.getValor());
 		if (obj.atributoModificado.equals("destreza"))
-			mapa.put(obj.atributoModificado, this.getDestreza() - obj.getAtributo());
+			mapa.put(obj.atributoModificado, this.getDestreza() - obj.getValor());
 		if (obj.atributoModificado.equals("fuerza"))
-			mapa.put(obj.atributoModificado, this.getFuerza() - obj.getAtributo());
+			mapa.put(obj.atributoModificado, this.getFuerza() - obj.getValor());
 		inventario.quitarObjeto(obj);
-		
+
 		this.actualizar(mapa);
-		
+
 	}
 
 	/**
@@ -1002,12 +1004,12 @@ public abstract class Personaje extends Character implements Peleable, Serializa
 
 	}
 
-	public int getCantidadObjetos() {	
+	public int getCantidadObjetos() {
 		return inventario.getCantidadObjetos();
 	}
-	public void quitarObjeto(Objeto obj) {	
+
+	public void quitarObjeto(Objeto obj) {
 		inventario.quitarObjeto(obj);
 	}
-
 
 }

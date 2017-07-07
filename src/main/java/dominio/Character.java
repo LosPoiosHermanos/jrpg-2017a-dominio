@@ -1,8 +1,5 @@
 package dominio;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 /**
  * Clase Abstracta de la cual heredan "Personaje" y "NonPlayableCharacter"
  * los atributos y funciones en comun

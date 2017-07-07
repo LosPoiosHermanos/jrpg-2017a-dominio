@@ -9,6 +9,10 @@ import java.util.HashMap;
 
 public class Asesino extends Casta {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static final int ENERGIAMINIMA = 10;
 	private static final double EVITARDANIO = 0.5;
 	private static final double AUMENTOEVASION = 0.15;

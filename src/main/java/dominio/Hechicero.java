@@ -9,6 +9,10 @@ import java.util.HashMap;
  */
 
 public class Hechicero extends Casta {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static final int ENERGIAMINIMA = 10;
 	private static final int BONUSINTELIGENCIA = 5;
 	private static final double DANIOPORPUNTOSDEMAGIA = 1.5;

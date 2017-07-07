@@ -8,6 +8,10 @@ import java.util.HashMap;
  */
 
 public class Orco extends Personaje {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static final int ENERGIAMINIMA = 10;
 	private static final int SALUDEXTRA = 10;
 	/**

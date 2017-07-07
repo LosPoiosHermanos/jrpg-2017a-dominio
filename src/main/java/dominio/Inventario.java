@@ -2,29 +2,25 @@ package dominio;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 
 public class Inventario implements Serializable {
 
-	
 	private static final long serialVersionUID = 1L;
 	public static int MAX_OBJETOS = 20;
 	private ArrayList<Objeto> objetos = new ArrayList<Objeto>();
 
+	public Inventario() {
 
-	
-	public Inventario(){
-		
 	}
-	public Inventario(int[] ids){
-		
+
+	public Inventario(int[] ids) {
+
 		for (int j = 0; j < MAX_OBJETOS; j++) {
 			objetos.add(new Objeto(ids[j]));
 		}
 	}
-	
-	public void agregar(Objeto obj){
+
+	public void agregar(Objeto obj) {
 		objetos.add(obj);
 
 	}
@@ -35,11 +31,11 @@ public class Inventario implements Serializable {
 
 	public Objeto agregarObjeto() {
 		Objeto obj = new Objeto();
-		if(obj.getId() > 0){
+		if (obj.getId() > 0) {
 			objetos.add(obj);
 			return obj;
 		}
-		if(objetos.contains(obj))
+		if (objetos.contains(obj))
 			return null;
 		return null;
 	}
@@ -48,56 +44,59 @@ public class Inventario implements Serializable {
 		ArrayList<Objeto> obj = objetos;
 		return obj;
 	}
+
 	public int[] getIdObjetos() {
-		int[] ids= new int[MAX_OBJETOS];
-		int  i = 0;
-		//System.out.println(objetos.size());trae21 objetoos
+		int[] ids = new int[MAX_OBJETOS];
+		int i = 0;
 		for (Objeto obj : objetos) {
-			if(obj.getId() > 0){
-				ids[i] = obj.getId(); 
+			if (obj.getId() > 0) {
+				ids[i] = obj.getId();
 				i++;
 			}
-				
+
 		}
 		return ids;
 	}
-	
-	public void reestablecerObjetos(int[] ids){
+
+	public void reestablecerObjetos(int[] ids) {
 		for (int j = 0; j < MAX_OBJETOS; j++) {
 			objetos.add(new Objeto(ids[j]));
 		}
 	}
-	
+
 	public void quitarObjeto(Objeto obj) {
 		for (Objeto objeto : objetos) {
-			if(objeto.getId().equals(obj.getId())){
+			if (objeto.getId().equals(obj.getId())) {
 				objetos.remove(objeto);
 				return;
 			}
 		}
 	}
+
 	public int getCantidadObjetos() {
-		int i=0;
+		int i = 0;
 		for (Objeto obj : objetos) {
-			if(obj.getId() > 0){ 
+			if (obj.getId() > 0) {
 				i++;
-			}	
+			}
 		}
 		return i;
 	}
+
 	public Objeto getObjeto(int idObjeto) {
 		for (Objeto objeto : objetos) {
-			if(objeto.getId().equals(idObjeto))
+			if (objeto.getId().equals(idObjeto))
 				return new Objeto(idObjeto);
 		}
 		return null;
 	}
-	public boolean estaEnInventario(int id){
+
+	public boolean estaEnInventario(int id) {
 		for (Objeto objeto : objetos) {
-			if(objeto.getId().equals(id))
+			if (objeto.getId().equals(id))
 				return true;
 		}
 		return false;
 	}
-	
+
 }

@@ -8,6 +8,10 @@ import java.io.Serializable;
  *
  */
 public abstract class Casta implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected double probabilidadGolpeCritico;
 	protected double probabilidadEvitarDaño;
 	protected double dañoCritico;

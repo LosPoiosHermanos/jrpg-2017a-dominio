@@ -10,7 +10,10 @@ import java.util.HashMap;
 
 public class Guerrero extends Casta {
 
-	private static final int CANTIDADHABILIDADES = 3;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static final int ENERGIAMINIMA = 10;
 	private static final int BONUSFUERZA = 5;
 
