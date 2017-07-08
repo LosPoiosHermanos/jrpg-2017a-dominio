@@ -46,23 +46,21 @@ public class NonPlayableCharacter extends Character implements Peleable {
 			dificultad = random.nextInt(DIFERENTESDIFICULTADES);
 		} else {
 			dificultad = dificultadNPC;
-		}
-		switch (dificultad) {
-		case 0:
+		}		
+		if (dificultad == 0) {
 			this.setFuerza(FUERZABASE1 + (nivel - 1) * AUMENTOFUERZA1);
 			this.setSalud(SALUDBASE1 + (nivel - 1) * AUMENTOSALUD1);
 			this.setDefensa(DEFENSABASE1 + (nivel - 1) * AUMENTODEFENSA1);
-			break;
-		case 1:
-			this.setFuerza(FUERZABASE2 + (nivel - 1) * AUMENTOFUERZA2);
-			this.setSalud(SALUDBASE2 + (nivel - 1) * AUMENTOSALUD2);
-			this.setDefensa(DEFENSABASE2 + (nivel - 1) * AUMENTODEFENSA2);
-			break;
-		case 2:
-			this.setFuerza(FUERZABASE3 + (nivel - 1) * AUMENTOFUERZA3);
-			this.setSalud(SALUDBASE3 + (nivel - 1) * AUMENTOSALUD3);
-			this.setDefensa(DEFENSABASE3 + (nivel - 1) * AUMENTODEFENSA3);
-			break;
+		} else {
+			if (dificultad == 1) {
+				this.setFuerza(FUERZABASE2 + (nivel - 1) * AUMENTOFUERZA2);
+				this.setSalud(SALUDBASE2 + (nivel - 1) * AUMENTOSALUD2);
+				this.setDefensa(DEFENSABASE2 + (nivel - 1) * AUMENTODEFENSA2);
+			} else {
+				this.setFuerza(FUERZABASE3 + (nivel - 1) * AUMENTOFUERZA3);
+				this.setSalud(SALUDBASE3 + (nivel - 1) * AUMENTOSALUD3);
+				this.setDefensa(DEFENSABASE3 + (nivel - 1) * AUMENTODEFENSA3);
+			}
 		}
 	}
 
@@ -73,8 +71,6 @@ public class NonPlayableCharacter extends Character implements Peleable {
 	public int otorgarExp() {
 		return this.getNivel() * EXPERIENCIAPORNIVEL;
 	}
-
-
 
 	/**
 	 * permite un ataque del personaje no jugable contra otro personaje
