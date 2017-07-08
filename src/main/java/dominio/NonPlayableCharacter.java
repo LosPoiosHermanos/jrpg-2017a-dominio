@@ -92,8 +92,8 @@ public class NonPlayableCharacter extends Character implements Peleable {
 
 	/**
 	 * reduce la salud del personaje no jugable cuando es atacado y
-	 * devuelve el daño recibido, o devuelve cero si esquivo el golpe o su
-	 * defensa es mayor que el daño del atacante
+	 * devuelve el dano recibido, o devuelve cero si esquivo el golpe o su
+	 * defensa es mayor que el dano del atacante
 	 * @param danio El danio que hacer el atacante
 	 * @param random Numero random para evitar el ataque
 	 * @return danio devuelve el danio realizado

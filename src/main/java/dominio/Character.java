@@ -145,8 +145,8 @@ public abstract class Character {
 	abstract int atacar(final Peleable atacado, final RandomGenerator random);
 	/**
 	 * reduce la salud del personaje no jugable cuando es atacado y
-	 * devuelve el daño recibido, o devuelve cero si esquivo el golpe o su
-	 * defensa es mayor que el daño del atacante
+	 * devuelve el dano recibido, o devuelve cero si esquivo el golpe o su
+	 * defensa es mayor que el dano del atacante
 	 * @param danio El danio que hacer el atacante
 	 * @param random Numero random para evitar el ataque
 	 * @return danio devuelve el danio realizado
@@ -156,12 +156,13 @@ public abstract class Character {
 	 * Que pasa despues del turno
 	 */
 	public void despuesDeTurno() {
-		
 	}
-
+	/**
+	 * Retorna un vector con las Ids de los objetos
+	 * @return Int[] Vector con Ids de los objetos
+	 */
 	public int[] getIdDeObjetos() {
-
 		return inventario.getIdObjetos();
-	} 
+	}
 
 }

@@ -10,9 +10,6 @@ import java.util.HashMap;
 
 public class Guerrero extends Casta {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private static final int ENERGIAMINIMA = 10;
 	private static final int BONUSFUERZA = 5;
@@ -22,7 +19,7 @@ public class Guerrero extends Casta {
 	 * parametro
 	 * @param probCritico Porcentaje del golpe critico
 	 * @param evasion Porcentaje de Evasion
-	 * @param ataqueCritico Daño por el golpe critico
+	 * @param ataqueCritico Dano por el golpe critico
 	 */
 	public Guerrero(final double probCritico, final double evasion, final double ataqueCritico) {
 		super(probCritico, evasion, ataqueCritico);
@@ -44,12 +41,10 @@ public class Guerrero extends Casta {
 	 */
 	public boolean habilidad1(final Personaje caster, final Peleable atacado) {
 		if (caster.getEnergia() > ENERGIAMINIMA) {
-			
-			HashMap<String,Integer>mapa = new HashMap<String,Integer>();
+			HashMap<String, Integer> mapa = new HashMap<String, Integer>();
 			mapa.put("salud", caster.getSalud());
 			mapa.put("energia", caster.getEnergia() - ENERGIAMINIMA);
 			caster.actualizar(mapa);
-			
 			if (atacado.serAtacado(caster.ataque * 2, new MyRandom()) > 0) {
 				return true;
 			}
@@ -66,13 +61,10 @@ public class Guerrero extends Casta {
 	 */
 	public boolean habilidad2(final Personaje caster, final Peleable atacado) {
 		if (caster.getEnergia() > ENERGIAMINIMA) {
-			
-			HashMap<String,Integer>mapa = new HashMap<String,Integer>();
+			HashMap<String, Integer> mapa = new HashMap<String, Integer>();
 			mapa.put("energia", caster.getEnergia() - ENERGIAMINIMA);
-			mapa.put("defensa",caster.getDefensa() + caster.magia);
-		
+			mapa.put("defensa", caster.getDefensa() + caster.magia);
 			caster.actualizar(mapa);
-			
 			return true;
 		}
 		return false;
@@ -87,19 +79,13 @@ public class Guerrero extends Casta {
 	 */
 	public boolean habilidad3(final Personaje caster, final Peleable atacado) {
 		if (caster.getEnergia() > ENERGIAMINIMA) {
-			
-			HashMap<String,Integer>mapa = new HashMap<String,Integer>();
-						
+			HashMap<String, Integer> mapa = new HashMap<String, Integer>();
 			mapa.put("energia", caster.getEnergia() - ENERGIAMINIMA);
 			caster.actualizar(mapa);
-			
 			if (!atacado.isNPC()) {
-				
 				int defensaOriginal = ((Personaje) atacado).getDefensa();
 				mapa.put("defensa", 0);
-				
 				((Personaje) atacado).actualizar(mapa);
-				
 				if (atacado.serAtacado(caster.ataque, new MyRandom()) > 0) {
 					mapa.remove("defensa");
 					mapa.put("defensa", defensaOriginal);

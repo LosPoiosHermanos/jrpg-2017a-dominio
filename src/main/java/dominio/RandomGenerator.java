@@ -18,6 +18,9 @@ public abstract class RandomGenerator {
 	 * @return double Valor aleatorio del tipo double
 	 */
 	public abstract double nextDouble();
-
+	/**
+	 * Devuelve un valor int aleatorio
+	 * @return int Valor adelatorio del tipo Int
+	 */
 	public abstract int getInt();
 }

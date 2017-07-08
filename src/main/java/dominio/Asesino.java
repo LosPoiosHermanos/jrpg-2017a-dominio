@@ -9,9 +9,6 @@ import java.util.HashMap;
 
 public class Asesino extends Casta {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private static final int ENERGIAMINIMA = 10;
 	private static final double EVITARDANIO = 0.5;
@@ -21,7 +18,7 @@ public class Asesino extends Casta {
 	 * crea la casta "Asesino" con valores enviados por parametro
 	 * @param probCritico Porcentaje del golpe critico
 	 * @param evasion Porcentaje de Evasion
-	 * @param ataqueCritico Daño por el golpe critico
+	 * @param ataqueCritico Dano por el golpe critico
 	 */
 	public Asesino(final double probCritico, final double evasion, final double ataqueCritico) {
 		super(probCritico, evasion, ataqueCritico);
@@ -43,13 +40,11 @@ public class Asesino extends Casta {
 	 */
 	public boolean habilidad1(final Personaje caster, final Peleable atacado) {
 		if (caster.getEnergia() > ENERGIAMINIMA) {
-			
-			HashMap<String,Integer>mapa = new HashMap<String,Integer>();
+			HashMap<String, Integer> mapa = new HashMap<String, Integer>();
 			mapa.put("salud", caster.getSalud());
 			mapa.put("energia", caster.getEnergia() - ENERGIAMINIMA);
 			caster.actualizar(mapa);
-			
-			if (atacado.serAtacado((int) (caster.ataque * caster.getCasta().getDañoCritico()),
+			if (atacado.serAtacado((int) (caster.ataque * caster.getCasta().getDanoCritico()),
 					new MyRandom()) > 0) {
 				return true;
 			}
@@ -67,16 +62,14 @@ public class Asesino extends Casta {
 
 	public boolean habilidad2(final Personaje caster, final Peleable atacado) {
 		if (caster.getEnergia() > ENERGIAMINIMA) {
-			
-			HashMap<String,Integer>mapa = new HashMap<String,Integer>();
+			HashMap<String, Integer> mapa = new HashMap<String, Integer>();
 			mapa.put("salud", caster.getSalud());
 			mapa.put("energia", caster.getEnergia() - ENERGIAMINIMA);
 			caster.actualizar(mapa);
-			
-			if (this.getProbabilidadEvitarDaño() + AUMENTOEVASION < EVITARDANIO) {
-				this.probabilidadEvitarDaño += AUMENTOEVASION;
+			if (this.getProbabilidadEvitarDano() + AUMENTOEVASION < EVITARDANIO) {
+				this.probabilidadEvitarDano += AUMENTOEVASION;
 			} else {
-				this.probabilidadEvitarDaño = EVITARDANIO;
+				this.probabilidadEvitarDano = EVITARDANIO;
 			}
 			return true;
 		}

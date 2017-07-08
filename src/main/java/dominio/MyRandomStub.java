@@ -36,5 +36,4 @@ public class MyRandomStub extends RandomGenerator {
 	public int getInt() {
 		return this.valorINT;
 	}
-
 }

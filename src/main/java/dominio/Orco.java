@@ -9,7 +9,6 @@ import java.util.HashMap;
 
 public class Orco extends Personaje {
 	/**
-	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private static final int ENERGIAMINIMA = 10;
@@ -38,9 +37,12 @@ public class Orco extends Personaje {
 	 * @param nivel Cantidad de nivel
 	 * @param idPersonaje ID del personaje
 	 */
-	public Orco(final String nombre, final int salud, final int energia, final int fuerza, final int destreza,
-			final int inteligencia, final Casta casta, final int experiencia, final int nivel, final int idPersonaje) {
-		super(nombre, salud, energia, fuerza, destreza, inteligencia, casta, experiencia, nivel, idPersonaje);
+	public Orco(final String nombre, final int salud, final int energia,
+			final int fuerza, final int destreza, final int inteligencia,
+			final Casta casta, final int experiencia, final int nivel,
+			final int idPersonaje) {
+		super(nombre, salud, energia, fuerza, destreza, inteligencia,
+				casta, experiencia, nivel, idPersonaje);
 	}
 	/**
 	 * permite el uso de la habilidad "Golpe Defensa" propia de la raza "orco" y
@@ -50,7 +52,7 @@ public class Orco extends Personaje {
 	 * @return true Si se puede utilizar la habilidad del Golpe Defensa
 	 */
 	public boolean habilidadRaza1(final Peleable atacado, final RandomGenerator random) {
-		HashMap<String,Integer> mapa = new HashMap<String,Integer>();
+		HashMap<String, Integer> mapa = new HashMap<String, Integer>();
 		if (this.getEnergia() > ENERGIAMINIMA) {
 			mapa.put("energia", this.getEnergia() - ENERGIAMINIMA);
 			this.actualizar(mapa);
@@ -69,7 +71,7 @@ public class Orco extends Personaje {
 	 * @return true Si se puede utilizar la habilidad del Mordisco de vida
 	 */
 	public boolean habilidadRaza2(final Peleable atacado, final RandomGenerator random) {
-		HashMap<String,Integer> mapa = new HashMap<String,Integer>();
+		HashMap<String, Integer> mapa = new HashMap<String, Integer>();
 		if (this.getEnergia() > ENERGIAMINIMA) {
 			mapa.put("energia", this.getEnergia() - ENERGIAMINIMA);
 			this.actualizar(mapa);
@@ -95,6 +97,6 @@ public class Orco extends Personaje {
 	}
 	@Override
 	public final String[] getHabilidadesRaza() {
-		return new String[] { "Golpe Defensa", "Mordisco de Vida" };
+		return new String[] {"Golpe Defensa", "Mordisco de Vida" };
 	}
 }

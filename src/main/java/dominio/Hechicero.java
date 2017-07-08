@@ -9,9 +9,7 @@ import java.util.HashMap;
  */
 
 public class Hechicero extends Casta {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	private static final int ENERGIAMINIMA = 10;
 	private static final int BONUSINTELIGENCIA = 5;
@@ -20,7 +18,7 @@ public class Hechicero extends Casta {
 	 * crea la casta "Hechicero" con valores enviados por parametro
 	 * @param probCritico Porcentaje del golpe critico
 	 * @param evasion Porcentaje de Evasion
-	 * @param ataqueCritico Daño por el golpe critico
+	 * @param ataqueCritico Dano por el golpe critico
 	 */
 	public Hechicero(final double probCritico, final double evasion, final double ataqueCritico) {
 		super(probCritico, evasion, ataqueCritico);
@@ -42,9 +40,7 @@ public class Hechicero extends Casta {
 	 * @return true Si se pudo realizar la habilidad
 	 */
 	public boolean habilidad1(final Personaje caster, final Peleable atacado) {
-		
-		HashMap<String,Integer> mapa= new HashMap<String,Integer>();
-		
+		HashMap<String, Integer> mapa = new HashMap<String, Integer>();
 		if (caster.getEnergia() > ENERGIAMINIMA) {
 			mapa.put("energia", caster.getEnergia() - ENERGIAMINIMA);
 			caster.actualizar(mapa);
@@ -64,11 +60,8 @@ public class Hechicero extends Casta {
 	 * @return true Si se pudo realizar la habilidad
 	 */
 	public boolean habilidad2(final Personaje caster, final Peleable aliado) {
-		
-		HashMap<String,Integer> mapa= new HashMap<String,Integer>();
-		
+		HashMap<String, Integer> mapa = new HashMap<String, Integer>();
 		if (caster.getEnergia() > ENERGIAMINIMA) {
-			
 			mapa.put("energia", caster.getEnergia() - ENERGIAMINIMA);
 			caster.actualizar(mapa);
 			aliado.serCurado(caster.calcularPuntosDeMagia());
@@ -85,13 +78,10 @@ public class Hechicero extends Casta {
 	 * @return true Si se pudo realizar la habilidad
 	 */
 	public boolean habilidad3(final Personaje caster, final Peleable atacado) {
-		
-		HashMap<String,Integer> mapa= new HashMap<String,Integer>();
-		
+		HashMap<String, Integer> mapa = new HashMap<String, Integer>();
 		if (caster.getEnergia() > ENERGIAMINIMA) {
 			mapa.put("energia", caster.getEnergia() - ENERGIAMINIMA);
 			caster.actualizar(mapa);
-			
 			if (!atacado.isNPC()) {
 				int energiaRobada =	((Personaje)
 						atacado).serDesernegizado(caster.calcularPuntosDeMagia());

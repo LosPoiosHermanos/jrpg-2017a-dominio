@@ -9,9 +9,6 @@ import java.util.HashMap;
 
 public class Elfo extends Personaje {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private static final int ENERGIAMINIMA = 10;
 	private static final int ENERGIAEXTRA = 10;
@@ -57,13 +54,10 @@ public class Elfo extends Personaje {
 	 */
 	public boolean habilidadRaza1(final Peleable atacado, final RandomGenerator random) {
 		if (this.getEnergia() > ENERGIAMINIMA) {
-			
-			
-			HashMap<String,Integer>mapa = new HashMap<String,Integer>();
+			HashMap<String, Integer> mapa = new HashMap<String, Integer>();
 			mapa.put("salud", this.getSalud());
 			mapa.put("energia", this.getEnergia() - ENERGIAMINIMA);
 			this.actualizar(mapa);
-			
 			if (atacado.serAtacado(this.getFuerza() + this.getNivel() * DANIOPORNIVEL, random) > 0) {
 				return true;
 			}
@@ -80,13 +74,10 @@ public class Elfo extends Personaje {
 	 */
 	public boolean habilidadRaza2(final Peleable atacado, final RandomGenerator random) {
 		if (this.getEnergia() > ENERGIAMINIMA) {
-			
-			HashMap<String,Integer>mapa = new HashMap<String,Integer>();
+			HashMap<String, Integer> mapa = new HashMap<String, Integer>();
 			mapa.put("salud", this.getSalud());
 			mapa.put("energia", this.getEnergia() - ENERGIAMINIMA);
 			this.actualizar(mapa);
-			
-	
 			if (atacado.serAtacado((int) (this.magia), random) > 0) {
 				return true;
 			}

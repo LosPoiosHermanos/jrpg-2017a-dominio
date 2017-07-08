@@ -11,12 +11,12 @@ public class TestCasta {
 		Casta c1 = new Asesino();
 		Assert.assertNotNull(c1.getHabilidadesCasta());
 		Assert.assertNotNull(c1.getNombreCasta());
-		double danio = c1.getDañoCritico();
-		c1.setDañoCritico(33.33);
-		Assert.assertNotEquals(danio , c1.getDañoCritico());
-		danio = c1.getProbabilidadEvitarDaño();
-		c1.setProbabilidadEvitarDaño(33.33);
-		Assert.assertNotEquals(danio , c1.getProbabilidadEvitarDaño());
+		double danio = c1.getDanoCritico();
+		c1.setDanoCritico(33.33);
+		Assert.assertNotEquals(danio , c1.getDanoCritico());
+		danio = c1.getProbabilidadEvitarDano();
+		c1.setProbabilidadEvitarDano(33.33);
+		Assert.assertNotEquals(danio , c1.getProbabilidadEvitarDano());
 		danio = c1.getProbabilidadGolpeCritico();
 		c1.setProbabilidadGolpeCritico(33.33);
 		Assert.assertNotEquals(danio , c1.getProbabilidadGolpeCritico());

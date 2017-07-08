@@ -3,7 +3,7 @@ package dominio;
 import java.util.LinkedList;
 
 /**
- * Añade o elimina jugadores a un equipo determinado
+ * Anade o elimina jugadores a un equipo determinado
  */
 public class Alianza {
 
@@ -45,7 +45,7 @@ public class Alianza {
 	}
 
 	/**
-	 * Añade un personaje a la alianza.
+	 * Anade un personaje a la alianza.
 	 * @param pj Se agrega un personaje en la lista de la Alianza
 	 */
 	public void agregarPersonaje(final Personaje pj) {

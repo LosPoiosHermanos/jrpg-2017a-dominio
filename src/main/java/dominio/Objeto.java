@@ -1,5 +1,9 @@
 package dominio;
-
+/**
+ * Clase que va ganando el personaje al ganar una
+ * batalla, mejoran los atributos del mismo y se
+ * guardan en un inventario
+ */
 public class Objeto {
 
 	private Integer id;
@@ -8,7 +12,9 @@ public class Objeto {
 	protected int valor;
 	protected String atributoModificado;
 	protected MyRandom rand = new MyRandom();
-
+	/**
+	 * Creo un Objeto random
+	 */
 	public Objeto() {
 		id = rand.nextInt(CANTIDADDEOBJETOS) + 1;
 		asignarObjeto();
@@ -34,7 +40,7 @@ public class Objeto {
 				{"Shuriken", "15", "destreza" }, {"Katana", "25", "destreza" },
 				{"Casco", "10", "defensa" }, {"Escudo", "15", "defensa" },
 				{"Armadura", "20", "defensa" }, {"Capa", "10", "inteligencia" },
-				{"Sombrero", "20", "inteligencia" },{"Cetro", "30", "inteligencia" },
+				{"Sombrero", "20", "inteligencia" }, {"Cetro", "30", "inteligencia" },
 				{"Cuchillo", "5", "fuerza" }, {"Martillo", "10", "fuerza" },
 				{"Lanza", "15", "fuerza" }, {"Hacha", "20", "fuerza" },
 				{"Espada", "20", "fuerza" } };

@@ -25,7 +25,7 @@ public class TestAliarCombatir {
 	}
 
 	@Test
-	public void testDañar() {
+	public void testDanar() {
 		Humano h = new Humano("Nicolas", new Guerrero(), 1);
 		Humano h2 = new Humano("Lautaro", new Asesino(), 1);
 		Assert.assertEquals(h2.getSalud(), 105);

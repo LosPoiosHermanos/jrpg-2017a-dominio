@@ -9,9 +9,6 @@ import java.util.HashMap;
 
 public class Humano extends Personaje {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private static final int ENERGIAMINIMA = 10;
 	private static final int ENERGIAEXTRA = 5;
@@ -55,7 +52,7 @@ public class Humano extends Personaje {
 	 * @return true Si se puede utilizar la habilidad del Golpe Critico
 	 */
 	public boolean habilidadRaza1(final Peleable atacado, final RandomGenerator random) {
-		HashMap<String,Integer> mapa = new HashMap<String,Integer>();
+		HashMap<String, Integer> mapa = new HashMap<String, Integer>();
 		if (this.getEnergia() > ENERGIAMINIMA) {
 			mapa.put("energia", this.getEnergia() - ENERGIAMINIMA);
 			this.actualizar(mapa);
@@ -73,8 +70,7 @@ public class Humano extends Personaje {
 	 * @return true Si se puede utilizar la habilidad del Golpe Critico
 	 */
 	public boolean habilidadRaza2(final Peleable atacado, final RandomGenerator random) {
-		HashMap<String,Integer> mapa = new HashMap<String,Integer>();
-		
+		HashMap<String, Integer> mapa = new HashMap<String, Integer>();
 		if (this.getEnergia() > ENERGIAMINIMA) {
 			if (atacado.serAtacado(atacado.getSalud() / 2, random) > 0) {
 				mapa.put("energia", this.getEnergia() / 2);
