@@ -336,6 +336,31 @@ public abstract class Personaje extends Character implements Peleable, Serializa
 		return obj;
 	}
 	/**
+	 * Se agrega un objeto al inventario y sus estadisticas
+	 */
+	public void agregarObjeto(Objeto obj) {
+
+		HashMap<String, Integer> mapa = new HashMap<String, Integer>();
+		inventario.agregar(obj);
+
+
+		if (obj.atributoModificado.equals("saludTope"))
+			mapa.put(obj.atributoModificado, this.getSaludTope() + obj.getValor());
+		if (obj.atributoModificado.equals("destreza"))
+			mapa.put(obj.atributoModificado, this.getDestreza() + obj.getValor());
+		if (obj.atributoModificado.equals("fuerza"))
+			mapa.put(obj.atributoModificado, this.getFuerza() + obj.getValor());
+		if (obj.atributoModificado.equals("defensa"))
+			mapa.put(obj.atributoModificado, this.getDefensa() + obj.getValor());
+		if (obj.atributoModificado.equals("inteligencia"))
+			mapa.put(obj.atributoModificado, this.getInteligencia() + obj.getValor());
+		if (obj.atributoModificado.equals("energiaTope"))
+			mapa.put(obj.atributoModificado, this.getEnergiaTope() + obj.getValor());
+
+		this.actualizar(mapa);
+
+	}
+	/**
 	 * Se elimina el objeto y sus estadisticas ganadas
 	 * @param obj Objeto a perder y con el sus estadisticas
 	 */
